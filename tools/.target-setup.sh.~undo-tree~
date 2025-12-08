@@ -1,0 +1,225 @@
+(undo-tree-save-format-version . 1)
+"e60485dcf6bb6350b9b47862bf46ae73426e1a0a"
+[nil nil nil nil (26905 57939 89190 612000) 0 nil]
+([nil nil ((1963 . 1964) (t 26905 57216 43292 454000)) nil (26905 57978 713950 610000) 0 nil] [nil nil ((1963 . 1964) (t 26905 57216 43292 454000)) ((#("
+" 0 1 (fontified t)) . 1963) (undo-tree-id4 . -1) (undo-tree-id5 . -1) (undo-tree-id6 . -1) (undo-tree-id7 . -1) (undo-tree-id8 . -1) (undo-tree-id9 . -1) (undo-tree-id10 . -1) (undo-tree-id11 . -1) (undo-tree-id12 . -1) (undo-tree-id13 . -1) (undo-tree-id14 . -1) (undo-tree-id15 . -1) (undo-tree-id16 . -1) (undo-tree-id17 . -1) (undo-tree-id18 . -1) (undo-tree-id19 . -1) (undo-tree-id20 . -1) (undo-tree-id21 . -1) (undo-tree-id22 . -1) (undo-tree-id23 . -1) (undo-tree-id24 . -1) (undo-tree-id25 . -1) (undo-tree-id26 . -1) (undo-tree-id27 . -1) (undo-tree-id28 . -1) (undo-tree-id29 . -1) (undo-tree-id30 . -1) (undo-tree-id31 . -1) (undo-tree-id32 . -1)) (26905 57938 473493 568000) 0 nil])
+([nil nil ((nil rear-nonsticky nil 2028 . 2029) (nil fontified nil 1964 . 2029) (1964 . 2029)) nil (26905 57978 713950 79000) 0 nil])
+([nil nil ((nil rear-nonsticky nil 2026 . 2027) (nil fontified nil 1964 . 2027) (1964 . 2027)) ((#(" git clone git@github.com:oldfart-maker/hm-dell-arch-laptop.git" 0 62 (fontified nil) 62 63 (rear-nonsticky nil fontified nil)) . 1964) (undo-tree-id2 . -63) (undo-tree-id3 . -63) (nil rear-nonsticky t 2026 . 2027)) (26905 57938 473414 583000) 0 nil] [nil nil ((nil rear-nonsticky nil 2026 . 2027) (nil fontified nil 1964 . 2027) (1964 . 2027)) ((#(" git clone git@github.com:oldfart-maker/hm-dell-arch-laptop.git" 0 62 (fontified nil) 62 63 (rear-nonsticky nil fontified nil)) . 1964) (undo-tree-id0 . -63) (undo-tree-id1 . -63) (nil rear-nonsticky t 2026 . 2027)) (26905 57934 325594 877000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 2029)) nil (26905 57978 713949 371000) 0 nil])
+nil
+nil
+([nil nil ((#("
+" 0 1 (rear-nonsticky t fontified t)) . 2028)) nil (26905 57978 713948 766000) 0 nil])
+([nil nil ((#("SECRETS_REPO_URL=\"https://github.com/oldfart-maker/sys-secrets.git\"" 0 16 (face font-lock-variable-name-face fontified t) 16 17 (fontified t) 17 67 (face font-lock-string-face fontified t)) . 1896) (undo-tree-id47 . -67) (undo-tree-id48 . -67) (undo-tree-id49 . -67) (undo-tree-id50 . -67)) nil (26905 57978 713947 967000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 1896) (undo-tree-id46 . -1)) nil (26905 57978 713945 882000) 0 nil])
+([nil nil ((2352 . 2355)) nil (26905 57978 713944 847000) 0 nil])
+([nil nil ((nil rear-nonsticky nil 2444 . 2445) (nil fontified nil 2353 . 2445) (2353 . 2445)) nil (26905 57978 713944 393000) 0 nil])
+([nil nil ((#("  git clone \"${SECRETS_DIR}\" pull --ff-only || echo \"Warning: git pull in sys-secrets failed\"" 0 12 (fontified t) 12 28 (face font-lock-string-face fontified t) 28 47 (fontified t) 47 51 (face font-lock-builtin-face fontified t) 51 52 (fontified t) 52 93 (face font-lock-string-face fontified t)) . 2259) (undo-tree-id45 . -93)) nil (26905 57978 713943 954000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . 2259) (undo-tree-id35 . -1) (undo-tree-id36 . -1) (undo-tree-id37 . -1) (undo-tree-id38 . -1) (undo-tree-id39 . -1) (undo-tree-id40 . -1) (undo-tree-id41 . -1) (undo-tree-id42 . -1) (undo-tree-id43 . -1) (undo-tree-id44 . -1)) nil (26905 57978 713943 41000) 0 nil])
+([nil nil ((#("
+" 0 1 (rear-nonsticky t fontified t)) . 2350) (undo-tree-id34 . -1)) nil (26905 57978 713937 805000) 0 nil])
+([nil nil ((#("  
+" 0 2 (fontified t) 2 3 (fontified t)) . 2350) (undo-tree-id33 . -3)) nil (26905 57978 713934 206000) 0 nil])
+([nil nil ((#("#!/usr/bin/env bash
+# target-setup.sh
+#
+# Bootstrap script for a fresh Arch target.
+#
+# Behavior:
+# - If run as root:
+#     * enables sshd
+#     * re-execs itself as LOCAL_USER=\"username\"
+# - If run as non-root (username):
+#     * ensures ~/projects/sys-secrets is cloned from GitHub
+#     * installs Nix (no-daemon), Home Manager, and nixGL
+#     * runs home-manager switch using the REMOTE flake:
+#         github:oldfart-maker/hm-dell-arch-laptop#username
+#
+# Assumptions:
+# - Network is up (Wi-Fi/DNS working)
+# - git is installed
+# - SSH keys / credentials for your private GitHub repos are available
+
+set -euo pipefail
+IFS=$'\\n\\t'
+
+progname=\"$(basename \"$0\")\"
+
+print_usage() {
+  cat <<EOF
+Usage: $progname
+
+Run this as root or as the target login user (\"username\") on a newly
+installed Arch system. It will:
+
+  - enable sshd
+  - clone/update ~/projects/sys-secrets
+  - install Nix (no-daemon) and Home Manager
+  - install nixGL
+  - run home-manager switch with the remote flake:
+      github:oldfart-maker/hm-dell-arch-laptop#username
+
+EOF
+}
+
+if [[ \"${1:-}\" == \"-h\" || \"${1:-}\" == \"--help\" ]]; then
+  print_usage
+  exit 0
+fi
+
+# --- Root → non-root flip -----------------------------------------------------
+
+if [[ \"$EUID\" -eq 0 ]]; then
+  LOCAL_USER=\"username\"
+
+  echo \"Running as root. Enabling sshd, then re-running as ${LOCAL_USER}...\"
+  systemctl enable sshd --now || true
+
+  exec su - \"${LOCAL_USER}\" -c \"$0\"
+fi
+
+# From here on, we are non-root (running as LOCAL_USER or direct login user).
+
+echo \"=== ${progname}: bootstrap starting as ${USER} ===\"
+
+# --- Basic checks -------------------------------------------------------------
+
+if ! command -v git >/dev/null 2>&1; then
+  echo \"ERROR: git not found. Install git (e.g. 'sudo pacman -S git') and re-run.\"
+  exit 1
+fi
+
+# --- Ensure sys-secrets repo is present --------------------------------------
+
+PROJECTS_DIR=\"${HOME}/projects\"
+SECRETS_REPO_URL=\"git@github.com:oldfart-maker/sys-secrets.git\"
+SECRETS_DIR=\"${PROJECTS_DIR}/sys-secrets\"
+
+echo
+echo \"-> Ensuring projects directory exists at ${PROJECTS_DIR}\"
+mkdir -p \"${PROJECTS_DIR}\"
+
+echo
+echo \"-> Ensuring sys-secrets repo is present\"
+if [[ -d \"${SECRETS_DIR}/.git\" ]]; then
+  echo \"   Found existing sys-secrets; pulling latest from origin\"
+  git -C \"${SECRETS_DIR}\" pull --ff-only || echo \"Warning: git pull in sys-secrets failed\"
+else
+  echo \"   Cloning sys-secrets into ${SECRETS_DIR}\"
+  git clone \"${SECRETS_REPO_URL}\" \"${SECRETS_DIR}\"
+fi
+
+# --- Local helper dirs used by HM config -------------------------------------
+
+echo
+echo \"-> Creating local helper directories\"
+mkdir -p \"${HOME}/.config/emacs-common\" \"${HOME}/Pictures/wallpapers\"
+
+# --- Install Nix (no-daemon) if missing --------------------------------------
+
+echo
+echo \"-> Installing Nix (no-daemon) if not already installed\"
+if command -v nix >/dev/null 2>&1; then
+  echo \"   nix already present; skipping installer\"
+else
+  sh <(curl -L https://nixos.org/nix/install) --no-daemon
+fi
+
+# Source Nix profile if available
+if [[ -f \"${HOME}/.nix-profile/etc/profile.d/nix.sh\" ]]; then
+  # shellcheck disable=SC1090
+  . \"${HOME}/.nix-profile/etc/profile.d/nix.sh\"
+  echo \"   Sourced nix profile\"
+else
+  echo \"Warning: nix profile not found at ~/.nix-profile/etc/profile.d/nix.sh (may require new login).\"
+fi
+
+# --- Home Manager via channel -------------------------------------------------
+
+echo
+echo \"-> Setting up Home Manager channel and installing\"
+if ! nix-channel --list | grep -q \"home-manager\"; then
+  nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+fi
+nix-channel --update
+nix-shell '<home-manager>' -A install || echo \"Warning: home-manager install returned non-zero status\"
+
+# --- Enable flakes and nix-command -------------------------------------------
+
+echo
+echo \"-> Enabling flakes and nix-command\"
+mkdir -p \"${HOME}/.config/nix\"
+printf \"experimental-features = nix-command flakes\\n\" > \"${HOME}/.config/nix/nix.conf\"
+if [[ -f \"${HOME}/.nix-profile/etc/profile.d/nix.sh\" ]]; then
+  # shellcheck disable=SC1090
+  . \"${HOME}/.nix-profile/etc/profile.d/nix.sh\"
+fi
+hash -r
+
+# --- Install nixGL for Wayland compatibility ---------------------------------
+
+echo
+echo \"-> Installing nixGL via channel\"
+if ! nix-channel --list | grep -q \"nixgl\"; then
+  nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl
+fi
+nix-channel --update
+nix-env -iA nixgl.auto.nixGLDefault || echo \"Warning: nix-env -iA nixgl.auto.nixGLDefault failed\"
+
+# --- home-manager switch via REMOTE flake ------------------------------------
+
+echo
+echo \"-> Running home-manager switch via remote flake\"
+FLAKE_REF=\"github:oldfart-maker/hm-dell-arch-laptop#username\"
+
+if command -v nix >/dev/null 2>&1; then
+  nix run nixpkgs#home-manager -- switch --flake \"${FLAKE_REF}\" -v --refresh || {
+    echo \"Warning: home-manager flake switch returned non-zero. Inspect output for details.\"
+  }
+else
+  echo \"ERROR: nix not found after install; skipping flake switch step\"
+fi
+
+# --- Prime wallpapers from arch-wallpapers/png -------------------------------
+
+echo
+echo \"-> Cloning arch-wallpapers and moving all *.png into ~/Pictures/wallpapers\"
+TMP_DIR=\"$(mktemp -d)\"
+pushd \"$TMP_DIR\" >/dev/null
+
+if git clone https://github.com/greatbot6120/arch-wallpapers.git; then
+  if [[ -d arch-wallpapers/png ]]; then
+    mkdir -p \"${HOME}/Pictures/wallpapers\"
+    shopt -s nullglob
+    PNGS=(arch-wallpapers/png/*.png)
+    if [[ ${#PNGS[@]} -gt 0 ]]; then
+      mv arch-wallpapers/png/*.png \"${HOME}/Pictures/wallpapers/\"
+      echo \"   Moved ${#PNGS[@]} PNG(s) to ${HOME}/Pictures/wallpapers\"
+    else
+      echo \"   No PNG files found in arch-wallpapers/png\"
+    fi
+    shopt -u nullglob
+  else
+    echo \"Warning: arch-wallpapers/png directory not found in cloned repo\"
+  fi
+  rm -rf arch-wallpapers
+else
+  echo \"Warning: git clone failed for arch-wallpapers\"
+fi
+
+popd >/dev/null
+rm -rf \"$TMP_DIR\"
+
+# --- Finish ------------------------------------------------------------------
+
+echo
+echo \"=== Finished ${progname} ===\"
+echo \"Nix, Home Manager, nixGL, sys-secrets, and the remote HM flake are now wired up.\"
+" 0 1 (face font-lock-comment-delimiter-face fontified t) 1 11 (face font-lock-comment-face fontified t) 11 14 (face font-lock-keyword-face fontified t) 14 20 (face font-lock-comment-face fontified t) 20 22 (face font-lock-comment-delimiter-face fontified t) 22 38 (face font-lock-comment-face fontified t) 38 39 (face font-lock-comment-delimiter-face fontified t) 39 40 (face font-lock-comment-face fontified t) 40 42 (face font-lock-comment-delimiter-face fontified t) 42 84 (face font-lock-comment-face fontified t) 84 85 (face font-lock-comment-delimiter-face fontified t) 85 86 (face font-lock-comment-face fontified t) 86 88 (face font-lock-comment-delimiter-face fontified t) 88 98 (face font-lock-comment-face fontified t) 98 100 (face font-lock-comment-delimiter-face fontified t) 100 118 (face font-lock-comment-face fontified t) 118 124 (face font-lock-comment-delimiter-face fontified t) 124 139 (face font-lock-comment-face fontified t) 139 145 (face font-lock-comment-delimiter-face fontified t) 145 188 (face font-lock-comment-face fontified t) 188 190 (face font-lock-comment-delimiter-face fontified t) 190 223 (face font-lock-comment-face fontified t) 223 229 (face font-lock-comment-delimiter-face fontified t) 229 284 (face font-lock-comment-face fontified t) 284 290 (face font-lock-comment-delimiter-face fontified t) 290 342 (face font-lock-comment-face fontified t) 342 348 (face font-lock-comment-delimiter-face fontified t) 348 399 (face font-lock-comment-face fontified t) 399 409 (face font-lock-comment-delimiter-face fontified t) 409 449 (face font-lock-comment-face fontified t) 449 450 (face font-lock-comment-face syntax-table (3) fontified t) 450 459 (face font-lock-comment-face fontified t) 459 460 (face font-lock-comment-delimiter-face fontified t) 460 461 (face font-lock-comment-face fontified t) 461 463 (face font-lock-comment-delimiter-face fontified t) 463 476 (face font-lock-comment-face fontified t) 476 478 (face font-lock-comment-delimiter-face fontified t) 478 514 (face font-lock-comment-face fontified t) 514 516 (face font-lock-comment-delimiter-face fontified t) 516 535 (face font-lock-comment-face fontified t) 535 537 (face font-lock-comment-delimiter-face fontified t) 537 606 (face font-lock-comment-face fontified t) 606 607 (fontified t) 607 610 (face font-lock-builtin-face fontified t) 610 625 (fontified t) 625 628 (face font-lock-variable-name-face fontified t) 628 630 (fontified t) 630 636 (face font-lock-string-face fontified t) 636 638 (fontified t) 638 646 (face font-lock-variable-name-face fontified t) 646 647 (fontified t) 647 650 (face font-lock-string-face fontified t) 650 659 (face sh-quoted-exec fontified t) 659 660 (face sh-quoted-exec syntax-table (1) fontified t) 660 662 (face sh-quoted-exec fontified t) 662 663 (face sh-quoted-exec syntax-table (1) fontified t) 663 665 (face font-lock-string-face fontified t) 665 667 (fontified t) 667 678 (face font-lock-function-name-face fontified t) 678 679 (face (rainbow-delimiters-depth-1-face) fontified t) 679 680 (face (rainbow-delimiters-depth-1-face) fontified t) 680 681 (fontified t) 681 682 (face (rainbow-delimiters-depth-1-face) fontified t) 682 694 (fontified t) 694 695 (face sh-heredoc syntax-table (15) sh-here-doc-marker #("EOF" 0 3 (fontified t)) fontified t) 695 1045 (face sh-heredoc fontified t) 1045 1046 (face sh-heredoc syntax-table (15) fontified t) 1046 1047 (face (rainbow-delimiters-depth-1-face) fontified t) 1047 1049 (fontified t) 1049 1051 (face font-lock-keyword-face fontified t) 1051 1052 (fontified t) 1052 1053 (face (rainbow-delimiters-depth-1-face) fontified t) 1053 1054 (face (rainbow-delimiters-depth-2-face) fontified t) 1054 1055 (fontified t) 1055 1063 (face font-lock-string-face fontified t) 1063 1067 (fontified t) 1067 1071 (face font-lock-string-face fontified t) 1071 1075 (fontified t) 1075 1083 (face font-lock-string-face fontified t) 1083 1087 (fontified t) 1087 1095 (face font-lock-string-face fontified t) 1095 1096 (fontified t) 1096 1097 (face (rainbow-delimiters-depth-2-face) fontified t) 1097 1098 (face (rainbow-delimiters-depth-1-face) fontified t) 1098 1100 (fontified t) 1100 1104 (face font-lock-keyword-face fontified t) 1104 1121 (fontified t) 1121 1125 (face font-lock-keyword-face fontified t) 1125 1128 (fontified t) 1128 1130 (face font-lock-keyword-face fontified t) 1130 1132 (fontified t) 1132 1134 (face font-lock-comment-delimiter-face fontified t) 1134 1213 (face font-lock-comment-face fontified t) 1213 1214 (fontified t) 1214 1216 (face font-lock-keyword-face fontified t) 1216 1217 (fontified t) 1217 1218 (face (rainbow-delimiters-depth-1-face) fontified t) 1218 1219 (face (rainbow-delimiters-depth-2-face) fontified t) 1219 1220 (fontified t) 1220 1227 (face font-lock-string-face fontified t) 1227 1234 (fontified t) 1234 1235 (face (rainbow-delimiters-depth-2-face) fontified t) 1235 1236 (face (rainbow-delimiters-depth-1-face) fontified t) 1236 1238 (fontified t) 1238 1242 (face font-lock-keyword-face fontified t) 1242 1245 (fontified t) 1245 1255 (face font-lock-variable-name-face fontified t) 1255 1256 (fontified t) 1256 1266 (face font-lock-string-face fontified t) 1266 1270 (fontified t) 1270 1274 (face font-lock-builtin-face fontified t) 1274 1275 (fontified t) 1275 1344 (face font-lock-string-face fontified t) 1344 1386 (fontified t) 1386 1390 (face font-lock-keyword-face fontified t) 1390 1396 (fontified t) 1396 1411 (face font-lock-string-face fontified t) 1411 1415 (fontified t) 1415 1419 (face font-lock-string-face fontified t) 1419 1420 (fontified t) 1420 1422 (face font-lock-keyword-face fontified t) 1422 1424 (fontified t) 1424 1426 (face font-lock-comment-delimiter-face fontified t) 1426 1500 (face font-lock-comment-face fontified t) 1500 1502 (face font-lock-comment-face fontified t) 1502 1503 (fontified t) 1503 1507 (face font-lock-builtin-face fontified t) 1507 1508 (fontified t) 1508 1560 (face font-lock-string-face fontified t) 1560 1562 (fontified t) 1562 1564 (face font-lock-comment-delimiter-face fontified t) 1564 1643 (face font-lock-comment-face fontified t) 1643 1644 (fontified t) 1644 1649 (face font-lock-keyword-face fontified t) 1649 1656 (face font-lock-builtin-face fontified t) 1656 1681 (fontified t) 1681 1685 (face font-lock-keyword-face fontified t) 1685 1688 (fontified t) 1688 1692 (face font-lock-builtin-face fontified t) 1692 1693 (fontified t) 1693 1768 (face font-lock-string-face fontified t) 1768 1771 (fontified t) 1771 1775 (face font-lock-keyword-face fontified t) 1775 1778 (fontified t) 1778 1780 (face font-lock-keyword-face fontified t) 1780 1782 (fontified t) 1782 1784 (face font-lock-comment-delimiter-face fontified t) 1784 1862 (face font-lock-comment-face fontified t) 1862 1863 (fontified t) 1863 1875 (face font-lock-variable-name-face fontified t) 1875 1876 (fontified t) 1876 1894 (face font-lock-string-face fontified t) 1894 1895 (fontified t) 1895 1911 (face font-lock-variable-name-face fontified t) 1911 1912 (fontified t) 1912 1958 (face font-lock-string-face fontified t) 1958 1959 (fontified t) 1959 1970 (face font-lock-variable-name-face fontified t) 1970 1971 (fontified t) 1971 2000 (face font-lock-string-face fontified t) 2000 2001 (fontified t) 2001 2002 (fontified t) 2002 2006 (face font-lock-builtin-face fontified t) 2006 2007 (fontified t) 2007 2011 (face font-lock-builtin-face fontified t) 2011 2012 (fontified t) 2012 2070 (face font-lock-string-face fontified t) 2070 2080 (fontified t) 2080 2097 (face font-lock-string-face fontified t) 2097 2099 (fontified t) 2099 2103 (face font-lock-builtin-face fontified t) 2103 2104 (fontified t) 2104 2108 (face font-lock-builtin-face fontified t) 2108 2109 (fontified t) 2109 2150 (face font-lock-string-face fontified t) 2150 2151 (fontified t) 2151 2153 (face font-lock-keyword-face fontified t) 2153 2154 (fontified t) 2154 2155 (face (rainbow-delimiters-depth-1-face) fontified t) 2155 2156 (face (rainbow-delimiters-depth-2-face) fontified t) 2156 2160 (fontified t) 2160 2181 (face font-lock-string-face fontified t) 2181 2182 (fontified t) 2182 2183 (face (rainbow-delimiters-depth-2-face) fontified t) 2183 2184 (face (rainbow-delimiters-depth-1-face) fontified t) 2184 2186 (fontified t) 2186 2190 (face font-lock-keyword-face fontified t) 2190 2193 (fontified t) 2193 2197 (face font-lock-builtin-face fontified t) 2197 2198 (fontified t) 2198 2257 (face font-lock-string-face fontified t) 2257 2258 (fontified t) 2258 2267 (fontified t) 2267 2283 (face font-lock-string-face fontified t) 2283 2302 (fontified t) 2302 2306 (face font-lock-builtin-face fontified t) 2306 2307 (fontified t) 2307 2348 (face font-lock-string-face fontified t) 2348 2349 (fontified t) 2349 2353 (face font-lock-keyword-face fontified t) 2353 2354 (fontified t) 2354 2356 (fontified t) 2356 2360 (face font-lock-builtin-face fontified t) 2360 2361 (fontified t) 2361 2405 (face font-lock-string-face fontified t) 2405 2418 (fontified t) 2418 2439 (face font-lock-string-face fontified t) 2439 2440 (fontified t) 2440 2456 (face font-lock-string-face fontified t) 2456 2457 (fontified t) 2457 2459 (face font-lock-keyword-face fontified t) 2459 2461 (fontified t) 2461 2463 (face font-lock-comment-delimiter-face fontified t) 2463 2541 (face font-lock-comment-face fontified t) 2541 2542 (fontified t) 2542 2546 (face font-lock-builtin-face fontified t) 2546 2547 (fontified t) 2547 2551 (face font-lock-builtin-face fontified t) 2551 2552 (fontified t) 2552 2590 (face font-lock-string-face fontified t) 2590 2600 (fontified t) 2600 2630 (face font-lock-string-face fontified t) 2630 2631 (fontified t) 2631 2660 (face font-lock-string-face fontified t) 2660 2662 (fontified t) 2662 2664 (face font-lock-comment-delimiter-face fontified t) 2664 2742 (face font-lock-comment-face fontified t) 2742 2743 (fontified t) 2743 2747 (face font-lock-builtin-face fontified t) 2747 2748 (fontified t) 2748 2752 (face font-lock-builtin-face fontified t) 2752 2753 (fontified t) 2753 2809 (face font-lock-string-face fontified t) 2809 2810 (fontified t) 2810 2813 (face font-lock-keyword-face fontified t) 2813 2820 (face font-lock-builtin-face fontified t) 2820 2845 (fontified t) 2845 2849 (face font-lock-keyword-face fontified t) 2849 2852 (fontified t) 2852 2856 (face font-lock-builtin-face fontified t) 2856 2857 (fontified t) 2857 2901 (face font-lock-string-face fontified t) 2901 2902 (fontified t) 2902 2906 (face font-lock-keyword-face fontified t) 2906 2913 (fontified t) 2913 2914 (face (rainbow-delimiters-depth-1-face) fontified t) 2914 2951 (fontified t) 2951 2952 (face (rainbow-delimiters-depth-1-face) fontified t) 2952 2965 (fontified t) 2965 2967 (face font-lock-keyword-face fontified t) 2967 2969 (fontified t) 2969 2971 (face font-lock-comment-delimiter-face fontified t) 2971 2995 (face font-lock-comment-face fontified t) 2995 3003 (face font-lock-comment-face fontified t) 3003 3005 (face font-lock-keyword-face fontified t) 3005 3006 (fontified t) 3006 3007 (face (rainbow-delimiters-depth-1-face) fontified t) 3007 3008 (face (rainbow-delimiters-depth-2-face) fontified t) 3008 3012 (fontified t) 3012 3055 (face font-lock-string-face fontified t) 3055 3056 (fontified t) 3056 3057 (face (rainbow-delimiters-depth-2-face) fontified t) 3057 3058 (face (rainbow-delimiters-depth-1-face) fontified t) 3058 3060 (fontified t) 3060 3064 (face font-lock-keyword-face fontified t) 3064 3067 (fontified t) 3067 3069 (face font-lock-comment-delimiter-face fontified t) 3069 3095 (face font-lock-comment-face fontified t) 3095 3097 (fontified t) 3097 3098 (face font-lock-builtin-face fontified t) 3098 3099 (fontified t) 3099 3142 (face font-lock-string-face fontified t) 3142 3145 (fontified t) 3145 3149 (face font-lock-builtin-face fontified t) 3149 3150 (fontified t) 3150 3174 (face font-lock-string-face fontified t) 3174 3175 (fontified t) 3175 3179 (face font-lock-keyword-face fontified t) 3179 3182 (fontified t) 3182 3186 (face font-lock-builtin-face fontified t) 3186 3187 (fontified t) 3187 3283 (face font-lock-string-face fontified t) 3283 3284 (fontified t) 3284 3286 (face font-lock-keyword-face fontified t) 3286 3288 (fontified t) 3288 3290 (face font-lock-comment-delimiter-face fontified t) 3290 3369 (face font-lock-comment-face fontified t) 3369 3370 (fontified t) 3370 3374 (face font-lock-builtin-face fontified t) 3374 3375 (fontified t) 3375 3379 (face font-lock-builtin-face fontified t) 3379 3380 (fontified t) 3380 3431 (face font-lock-string-face fontified t) 3431 3432 (fontified t) 3432 3434 (face font-lock-keyword-face fontified t) 3434 3435 (fontified t) 3435 3436 (face font-lock-negation-char-face fontified t) 3436 3456 (fontified t) 3456 3466 (fontified t) 3466 3480 (face font-lock-string-face fontified t) 3480 3482 (fontified t) 3482 3486 (face font-lock-keyword-face fontified t) 3486 3487 (fontified t) 3487 3498 (fontified t) 3498 3588 (fontified t) 3588 3590 (face font-lock-keyword-face fontified t) 3590 3622 (fontified t) 3622 3638 (face font-lock-string-face fontified t) 3638 3653 (fontified t) 3653 3657 (face font-lock-builtin-face fontified t) 3657 3658 (fontified t) 3658 3714 (face font-lock-string-face fontified t) 3714 3716 (fontified t) 3716 3718 (face font-lock-comment-delimiter-face fontified t) 3718 3796 (face font-lock-comment-face fontified t) 3796 3797 (fontified t) 3797 3801 (face font-lock-builtin-face fontified t) 3801 3802 (fontified t) 3802 3806 (face font-lock-builtin-face fontified t) 3806 3807 (fontified t) 3807 3843 (face font-lock-string-face fontified t) 3843 3849 (fontified t) 3849 3853 (fontified t) 3853 3854 (face font-lock-string-face fontified t) 3854 3874 (fontified t face font-lock-string-face) 3874 3875 (fontified t) 3875 3881 (face font-lock-builtin-face) 3882 3928 (face font-lock-string-face) 3931 3961 (face font-lock-string-face) 3962 3964 (face font-lock-keyword-face) 3965 3966 (face (rainbow-delimiters-depth-1-face)) 3966 3967 (face (rainbow-delimiters-depth-2-face)) 3971 4014 (face font-lock-string-face) 4015 4016 (face (rainbow-delimiters-depth-2-face)) 4016 4017 (face (rainbow-delimiters-depth-1-face)) 4019 4023 (face font-lock-keyword-face) 4026 4028 (face font-lock-comment-delimiter-face) 4028 4054 (face font-lock-comment-face) 4056 4057 (face font-lock-builtin-face) 4058 4101 (face font-lock-string-face) 4102 4104 (face font-lock-keyword-face) 4105 4109 (face font-lock-builtin-face) 4114 4116 (face font-lock-comment-delimiter-face) 4116 4194 (face font-lock-comment-face) 4195 4199 (face font-lock-builtin-face) 4200 4204 (face font-lock-builtin-face) 4205 4238 (face font-lock-string-face) 4239 4241 (face font-lock-keyword-face fontified t) 4241 4242 (fontified t) 4242 4243 (face font-lock-negation-char-face fontified t) 4243 4273 (fontified t) 4273 4280 (face font-lock-string-face fontified t) 4280 4282 (fontified t) 4282 4286 (face font-lock-keyword-face fontified t) 4286 4287 (fontified t) 4287 4372 (fontified t) 4372 4374 (face font-lock-keyword-face fontified t) 4374 4435 (fontified t) 4435 4439 (face font-lock-builtin-face fontified t) 4439 4440 (fontified t) 4440 4493 (face font-lock-string-face fontified t) 4493 4495 (fontified t) 4495 4497 (face font-lock-comment-delimiter-face fontified t) 4497 4503 (face font-lock-comment-face fontified t) 4503 4575 (face font-lock-comment-face fontified t) 4575 4576 (fontified t) 4576 4580 (face font-lock-builtin-face fontified t) 4580 4581 (fontified t) 4581 4585 (face font-lock-builtin-face fontified t) 4585 4586 (fontified t) 4586 4635 (face font-lock-string-face fontified t) 4635 4636 (fontified t) 4636 4645 (face font-lock-variable-name-face fontified t) 4645 4646 (fontified t) 4646 4687 (face font-lock-string-face fontified t) 4687 4688 (face font-lock-string-face fontified t syntax-table (3)) 4688 4697 (face font-lock-string-face fontified t) 4697 4699 (fontified t) 4699 4702 (face font-lock-keyword-face fontified t) 4702 4709 (face font-lock-builtin-face fontified t) 4709 4734 (fontified t) 4734 4738 (face font-lock-keyword-face fontified t) 4738 4756 (fontified t) 4756 4757 (fontified t syntax-table (3)) 4757 4788 (fontified t) 4788 4802 (face font-lock-string-face fontified t) 4802 4819 (fontified t) 4819 4820 (face (rainbow-delimiters-depth-1-face) fontified t) 4820 4825 (fontified t) 4825 4829 (face font-lock-builtin-face fontified t) 4829 4830 (fontified t) 4830 4913 (face font-lock-string-face fontified t) 4913 4916 (fontified t) 4916 4917 (face (rainbow-delimiters-depth-1-face) fontified t) 4917 4918 (fontified t) 4918 4922 (face font-lock-keyword-face fontified t) 4922 4925 (fontified t) 4925 4929 (face font-lock-builtin-face fontified t) 4929 4930 (fontified t) 4930 4987 (face font-lock-string-face fontified t) 4987 4994 (face font-lock-string-face fontified t) 4994 4995 (fontified t) 4995 4997 (face font-lock-keyword-face fontified t) 4997 4999 (fontified t) 4999 5001 (face font-lock-comment-delimiter-face fontified t) 5001 5079 (face font-lock-comment-face fontified t) 5079 5080 (fontified t) 5080 5084 (face font-lock-builtin-face fontified t) 5084 5085 (fontified t) 5085 5089 (face font-lock-builtin-face fontified t) 5089 5090 (fontified t) 5090 5166 (face font-lock-string-face fontified t) 5166 5167 (fontified t) 5167 5174 (face font-lock-variable-name-face fontified t) 5174 5175 (fontified t) 5175 5178 (face font-lock-string-face fontified t) 5178 5187 (face sh-quoted-exec fontified t) 5187 5189 (face font-lock-string-face fontified t) 5189 5190 (fontified t) 5190 5195 (face font-lock-builtin-face fontified t) 5195 5196 (fontified t) 5196 5206 (face font-lock-string-face fontified t) 5206 5219 (fontified t) 5219 5221 (face font-lock-keyword-face fontified t) 5221 5285 (fontified t) 5285 5289 (face font-lock-keyword-face fontified t) 5289 5292 (fontified t) 5292 5294 (face font-lock-keyword-face fontified t) 5294 5295 (fontified t) 5295 5296 (face (rainbow-delimiters-depth-1-face) fontified t) 5296 5297 (face (rainbow-delimiters-depth-2-face) fontified t) 5297 5321 (fontified t) 5321 5322 (face (rainbow-delimiters-depth-2-face) fontified t) 5322 5323 (face (rainbow-delimiters-depth-1-face) fontified t) 5323 5325 (fontified t) 5325 5329 (face font-lock-keyword-face fontified t) 5329 5343 (fontified t) 5343 5372 (face font-lock-string-face fontified t) 5372 5377 (fontified t) 5377 5382 (face font-lock-builtin-face fontified t) 5382 5399 (fontified t) 5399 5403 (face font-lock-variable-name-face fontified t) 5403 5404 (fontified t) 5404 5405 (face (rainbow-delimiters-depth-1-face) fontified t) 5405 5430 (fontified t) 5430 5431 (face (rainbow-delimiters-depth-1-face) fontified t) 5431 5436 (fontified t) 5436 5438 (face font-lock-keyword-face fontified t) 5438 5439 (fontified t) 5439 5440 (face (rainbow-delimiters-depth-1-face) fontified t) 5440 5441 (face (rainbow-delimiters-depth-2-face) fontified t) 5441 5443 (fontified t) 5443 5444 (face (rainbow-delimiters-depth-3-face) fontified t) 5444 5445 (fontified t syntax-table (3)) 5445 5449 (face font-lock-variable-name-face fontified t) 5449 5450 (face (rainbow-delimiters-depth-4-face) fontified t) 5450 5451 (fontified t) 5451 5452 (face (rainbow-delimiters-depth-4-face) fontified t) 5452 5453 (face (rainbow-delimiters-depth-3-face) fontified t) 5453 5460 (fontified t) 5460 5461 (face (rainbow-delimiters-depth-2-face) fontified t) 5461 5462 (face (rainbow-delimiters-depth-1-face) fontified t) 5462 5464 (fontified t) 5464 5468 (face font-lock-keyword-face fontified t) 5468 5504 (fontified t) 5504 5534 (face font-lock-string-face fontified t) 5534 5541 (fontified t) 5541 5545 (face font-lock-builtin-face fontified t) 5545 5546 (fontified t) 5546 5558 (face font-lock-string-face fontified t) 5558 5559 (face font-lock-string-face fontified t syntax-table (3)) 5559 5606 (face font-lock-string-face fontified t) 5606 5611 (fontified t) 5611 5615 (face font-lock-keyword-face fontified t) 5615 5622 (fontified t) 5622 5626 (face font-lock-builtin-face fontified t) 5626 5627 (fontified t) 5627 5673 (face font-lock-string-face fontified t) 5673 5678 (fontified t) 5678 5680 (face font-lock-keyword-face fontified t) 5680 5685 (fontified t) 5685 5690 (face font-lock-builtin-face fontified t) 5690 5705 (fontified t) 5705 5709 (face font-lock-keyword-face fontified t) 5709 5714 (fontified t) 5714 5718 (face font-lock-builtin-face fontified t) 5718 5719 (fontified t) 5719 5784 (face font-lock-string-face fontified t) 5784 5787 (fontified t) 5787 5789 (fontified t face font-lock-keyword-face) 5789 5790 (fontified t) 5790 5815 (fontified t) 5815 5819 (face font-lock-keyword-face fontified t) 5819 5822 (fontified t) 5822 5826 (face font-lock-builtin-face fontified t) 5826 5827 (fontified t) 5827 5874 (face font-lock-string-face fontified t) 5874 5875 (fontified t) 5875 5877 (face font-lock-keyword-face fontified t) 5877 5879 (fontified t) 5879 5883 (face font-lock-builtin-face fontified t) 5883 5902 (fontified t) 5902 5912 (face font-lock-string-face fontified t) 5912 5914 (fontified t) 5914 5916 (face font-lock-comment-delimiter-face fontified t) 5916 5994 (face font-lock-comment-face fontified t) 5994 5995 (fontified t) 5995 5999 (face font-lock-builtin-face fontified t) 5999 6000 (fontified t) 6000 6004 (face font-lock-builtin-face fontified t) 6004 6005 (fontified t) 6005 6035 (face font-lock-string-face fontified t) 6035 6036 (fontified t) 6036 6040 (face font-lock-builtin-face fontified t) 6040 6041 (fontified t) 6041 6123 (face font-lock-string-face fontified t) 6123 6124 (fontified t)) . 1) (undo-tree-id51 . -6124) (undo-tree-id52 . -1895) (undo-tree-id53 . -1895) (undo-tree-id54 . -1895) (undo-tree-id55 . -1895) (undo-tree-id56 . -2349) (undo-tree-id57 . -2349) (undo-tree-id58 . -1686) (undo-tree-id59 . -2258) (undo-tree-id60 . -2349) (undo-tree-id61 . -6124) (undo-tree-id62 . -4999) (undo-tree-id63 . -5913) (undo-tree-id64 . -5913) (undo-tree-id65 . -5913) (t 26905 57978 715250 99000)) nil (26906 12421 163358 365000) 0 nil])
+([nil nil ((nil rear-nonsticky nil 4940 . 4941) (nil fontified nil 1 . 4941) (1 . 4941)) nil (26906 12421 163322 417000) 0 nil])
+([nil nil ((4717 . 4718)) nil (26906 12421 163321 716000) 0 nil])
+([nil current ((nil fontified nil 5631 . 5632) (nil fontified nil 5621 . 5631) (nil fontified nil 5602 . 5621) (nil fontified nil 5598 . 5602) (nil fontified nil 5596 . 5598) (nil fontified nil 5594 . 5596) (nil fontified nil 5593 . 5594) (nil fontified nil 5546 . 5593) (nil fontified nil 5545 . 5546) (nil fontified nil 5541 . 5545) (nil fontified nil 5538 . 5541) (nil fontified nil 5534 . 5538) (nil fontified nil 5509 . 5534) (nil fontified nil 5508 . 5509) (nil fontified nil 5506 . 5508) (nil fontified nil 5503 . 5506) (nil fontified nil 5438 . 5503) (nil fontified nil 5437 . 5438) (nil fontified nil 5433 . 5437) (nil fontified nil 5428 . 5433) (nil fontified nil 5424 . 5428) (nil fontified nil 5409 . 5424) (nil fontified nil 5404 . 5409) (nil fontified nil 5399 . 5404) (nil fontified nil 5397 . 5399) (nil fontified nil 5392 . 5397) (nil fontified nil 5346 . 5392) (nil fontified nil 5345 . 5346) (nil fontified nil 5341 . 5345) (nil fontified nil 5334 . 5341) (nil fontified nil 5330 . 5334) (nil fontified nil 5325 . 5330) (nil fontified nil 5278 . 5325) (nil fontified nil 5277 . 5278) (nil fontified nil 5265 . 5277) (nil fontified nil 5264 . 5265) (nil fontified nil 5260 . 5264) (nil fontified nil 5253 . 5260) (nil fontified nil 5223 . 5253) (nil fontified nil 5188 . 5223) (nil fontified nil 5187 . 5188) (nil fontified nil 5183 . 5187) (nil fontified nil 5181 . 5183) (nil fontified nil 5180 . 5181) (nil fontified nil 5179 . 5180) (nil fontified nil 5172 . 5179) (nil fontified nil 5171 . 5172) (nil fontified nil 5170 . 5171) (nil fontified nil 5169 . 5170) (nil fontified nil 5168 . 5169) (nil fontified nil 5164 . 5168) (nil fontified nil 5163 . 5164) (nil fontified nil 5162 . 5163) (nil fontified nil 5160 . 5162) (nil fontified nil 5159 . 5160) (nil fontified nil 5158 . 5159) (nil fontified nil 5157 . 5158) (nil fontified nil 5155 . 5157) (nil fontified nil 5150 . 5155) (nil fontified nil 5149 . 5150) (nil fontified nil 5124 . 5149) (nil fontified nil 5123 . 5124) (nil fontified nil 5122 . 5123) (nil fontified nil 5118 . 5122) (nil fontified nil 5101 . 5118) (nil fontified nil 5096 . 5101) (nil fontified nil 5091 . 5096) (nil fontified nil 5062 . 5091) (nil fontified nil 5049 . 5062) (nil fontified nil 5048 . 5049) (nil fontified nil 5044 . 5048) (nil fontified nil 5042 . 5044) (nil fontified nil 5041 . 5042) (nil fontified nil 5040 . 5041) (nil fontified nil 5016 . 5040) (nil fontified nil 5015 . 5016) (nil fontified nil 5014 . 5015) (nil fontified nil 5013 . 5014) (nil fontified nil 5011 . 5013) (nil fontified nil 5009 . 5011) (nil fontified nil 5008 . 5009) (nil fontified nil 5004 . 5008) (nil fontified nil 5002 . 5004) (nil fontified nil 4940 . 5002) (nil fontified nil 4938 . 4940) (nil fontified nil 4925 . 4938) (nil fontified nil 4915 . 4925) (nil fontified nil 4914 . 4915) (nil fontified nil 4909 . 4914) (nil fontified nil 4908 . 4909) (nil fontified nil 4906 . 4908) (nil fontified nil 4897 . 4906) (nil fontified nil 4894 . 4897) (nil fontified nil 4893 . 4894) (nil fontified nil 4886 . 4893) (nil fontified nil 4885 . 4886) (nil fontified nil 4809 . 4885) (nil fontified nil 4808 . 4809) (nil fontified nil 4804 . 4808) (nil fontified nil 4803 . 4804) (nil fontified nil 4799 . 4803) (nil fontified nil 4798 . 4799) (nil fontified nil 4720 . 4798) (nil fontified nil 4718 . 4720) (4718 . 5632)) nil (26906 12421 163316 442000) 0 nil])
+nil

@@ -1,0 +1,5 @@
+(undo-tree-save-format-version . 1)
+"d9c6e1d1da57460bdfb9f0d7e0b6e5294fa3f4ef"
+[nil nil nil nil (26935 18788 268966 658000) 0 nil]
+([nil current ((#("hm-dell-arch-laptop" 0 19 (fontified nil)) . -1025) (1044 . 1064) (#("hm-dell-arch-laptop" 0 19 (fontified nil)) . -939) (958 . 978) (#("hm-dell-arch-laptop" 0 19 (mouse-face markdown-highlight-face font-lock-multiline t rear-nonsticky t face markdown-plain-url-face keymap (keymap (mouse-2 . markdown-follow-thing-at-point) (follow-link . mouse-face)) fontified t)) . -835) (854 . 874) (#("hm-dell-arch-laptop" 0 19 (fontified nil)) . -623) (642 . 662) (#("hm-dell-arch-laptop" 0 19 (mouse-face markdown-highlight-face font-lock-multiline t rear-nonsticky t face markdown-plain-url-face keymap (keymap (mouse-2 . markdown-follow-thing-at-point) (follow-link . mouse-face)) fontified t)) . -582) (601 . 621) (#("hm-dell-arch-laptop" 0 19 (fontified t markdown-list-item ((18 125 0 2 "* " nil (18 20 18 18 18 19 19 20))))) . -72) (t 26928 46177 77453 840000) (91 . 111) 17 (t 26928 46177 77453 840000)) nil (26935 18788 261946 982000) 0 nil])
+nil
