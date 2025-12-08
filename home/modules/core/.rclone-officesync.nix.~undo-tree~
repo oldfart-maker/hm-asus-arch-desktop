@@ -1,6 +1,0 @@
-(undo-tree-save-format-version . 1)
-"92206d59192643901be20fbb7447ac5352080a7c"
-[nil nil nil nil (26908 23415 429475 745000) 0 nil]
-([nil nil ((#("    executable = true;" 0 4 (fontified t) 4 14 (face nix-attribute-face fontified t) 14 17 (fontified t) 17 21 (face nix-builtin-face fontified t) 21 22 (fontified t)) . 1895) (undo-tree-id0 . -9) (undo-tree-id1 . -9) (t 26904 63602 131173 374000)) nil (26908 23415 429474 237000) 0 nil])
-([nil current ((nil rear-nonsticky nil 1916 . 1917) (nil fontified nil 1916 . 1917) (nil fontified nil 1912 . 1916) (nil fontified nil 1909 . 1912) (nil fontified nil 1899 . 1909) (nil fontified nil 1895 . 1899) (1895 . 1917)) nil (26908 23415 429460 37000) 0 nil])
-nil
