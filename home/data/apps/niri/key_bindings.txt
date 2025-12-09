@@ -1,5 +1,4 @@
 Mod+Shift+Slash                                    Niri Key Bindings
-Mod+Slash                                          LibreOffice Key Bindings
 Mod+D                                              Launcher
 Mod+B                                              Bluetooth
 Mod+Shift+D                                        Show Active Windows
