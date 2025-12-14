@@ -48,24 +48,7 @@ h) ./target-setup.sh
 i) rm -rf hm-asus-arch-desktop
 
 ***
-* TODO - Install Avahi and nss-mdns services
 
-Set up avahi naming / lookup services on each machine. This needs become part of the core OS install in Step 3. Assuming this should be added to bootstrap.sh.
-
-# core-os-setup-avahi.sh
-set -euo pipefail
-sudo pacman -S --needed avahi nss-mdns
-sudo systemctl enable --now avahi-daemon.service
-
-# remind yourself about nsswitch
-automate pulling / move the nsswith.conf file from git to the target location. DO NOT MANUALLY EDIT ANY LOCAL FILE!!! NEEDS TO BE IDEMPOTENT.
-
-***
-* TODO - Copy ssh config from git to target location. This holds links to private keys and convenience names for ssh, emacs, scp, etc. For example the name services allow for <ssh dell>, scp dell.
-
-copy to ~/.ssh/
-
-***
 * TODO - TP-LINK INSTALL -  Add tplink wireless USB wifi 6 installation. This has to be run after every kernel update. DO NOT USE THIS APPROACH. IT IS JUST A FALL BACK IN CASE WE NEED TO DEBUG THE tplink device.
 
 Ensure device is seen

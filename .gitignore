@@ -20,3 +20,13 @@ cache/
 # editor junk
 *~
 .#*
+
+# tp-link makepkg working directories
+
+# tp-link makepkg working directories
+tools/tp-link/rtw89-morrownr-dkms-git/pkg/
+tools/tp-link/rtw89-morrownr-dkms-git/src/
+tools/tp-link/rtw89-morrownr-dkms-git/rtw89/
+
+# built packages
+tools/tp-link/rtw89-morrownr-dkms-git/*.pkg.tar.zst
