@@ -1,0 +1,17 @@
+#!/bin/sh
+# ~/.xinitrc-vbox – minimal Xorg session for VirtualBox
+
+# Optional: merge X resources if you ever add any
+[ -f "$HOME/.Xresources" ] && xrdb -merge "$HOME/.Xresources"
+
+# Start a tiny WM in the background so windows have decorations
+openbox-session &
+
+# (Optional) ensure some nice common resolutions exist even if X forgets them
+# These are harmless if already set.
+VBoxManage setextradata "WIN11-TEST" "CustomVideoMode1" "1920x1080x32"
+VBoxManage setextradata "WIN11-TEST" "CustomVideoMode2" "2560x1440x32"
+
+# Run VirtualBox in the foreground.
+# When you close VirtualBox, Xorg will exit and drop you back to the TTY.
+virtualbox

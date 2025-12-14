@@ -1,0 +1,7 @@
+Host leno
+     HostName LENO-ARCH-WAY.local
+     User username
+
+Host angel
+     HostName ANGEL-ARCH.local
+     User username

@@ -9,31 +9,25 @@
     },
     "archinstall-language": "English",
     "auth_config": {},
-    "bootloader_config": {
-        "bootloader": "Grub",
-        "removable": false,
-        "uki": false
-    },
+    "bootloader": "Grub",
     "custom_commands": [],
     "disk_config": {
-        "btrfs_options": {
-            "snapshot_config": null
-        },
         "config_type": "default_layout",
         "device_modifications": [
             {
-                "device": "/dev/sdb",
+                "device": "/dev/nvme0n1",
                 "partitions": [
                     {
                         "btrfs": [],
                         "dev_path": null,
                         "flags": [
-                            "boot"
+                            "boot",
+                            "esp"
                         ],
                         "fs_type": "fat32",
                         "mount_options": [],
                         "mountpoint": "/boot",
-                        "obj_id": "485aaffb-75cc-446e-9575-24ff553f9d7b",
+                        "obj_id": "3450aa0c-058f-4ce9-a7ae-e536745ceb5f",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
@@ -60,14 +54,14 @@
                         "fs_type": "ext4",
                         "mount_options": [],
                         "mountpoint": "/",
-                        "obj_id": "f69134bc-be3c-4ab8-81ae-c735b020eb9e",
+                        "obj_id": "5a3594a9-3907-4c2d-9d6c-83a2500e2f73",
                         "size": {
                             "sector_size": {
                                 "unit": "B",
                                 "value": 512
                             },
                             "unit": "B",
-                            "value": 511035047936
+                            "value": 511033999360
                         },
                         "start": {
                             "sector_size": {
@@ -85,7 +79,7 @@
             }
         ]
     },
-    "hostname": "ANGEL-ARCH",
+    "hostname": "DELL-ARCH",
     "kernels": [
         "linux"
     ],
@@ -95,28 +89,28 @@
         "sys_lang": "en_US.UTF-8"
     },
     "network_config": {
-        "type": "iso"
+        "type": "nm"
     },
     "ntp": true,
     "packages": [
         "base-devel",
         "git",
         "reflector",
-        "xwayland-satellite"
+        "xwayland-satellite",
+	"avahi",
+	"nss-mdns"
     ],
     "parallel_downloads": 0,
     "profile_config": {
-        "gfx_driver": "AMD / ATI (open-source)",
-        "greeter": "sddm",
+        "gfx_driver": "Intel (open-source)",
+        "greeter": "gdm",
         "profile": {
             "custom_settings": {
-                "Lxqt": {},
                 "Niri": {
                     "seat_access": "seatd"
                 }
             },
             "details": [
-                "Lxqt",
                 "Niri"
             ],
             "main": "Desktop"
@@ -126,5 +120,5 @@
     "services": [],
     "swap": true,
     "timezone": "US/Eastern",
-    "version": "3.0.14"
+    "version": "3.0.11"
 }
