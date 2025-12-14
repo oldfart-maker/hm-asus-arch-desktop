@@ -99,7 +99,8 @@
         "xwayland-satellite",
 	"avahi",
 	"nss-mdns",
-	"usbutils"
+	"usbutils",
+	"iw"
     ],
     "parallel_downloads": 0,
     "profile_config": {
