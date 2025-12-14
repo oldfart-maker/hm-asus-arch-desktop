@@ -92,6 +92,20 @@ c.d) nmcli connection modify "Hangout" connection.autoconnect yes
 c.e) nmcli connection up "Hangout"
 
 ***
+* TODO - TP-LINK INSTALL - DKMS automated approach (DO THIS) V2!!!
+
+a) build + install
+a.b) cd ~/projects/hm-asus-arch-desktop/tools/tp-link/rtw89-morrownr-dkms-git
+a.c) makepkg -si
+a.d) sudo cp 10-wlantplink.link  /etc/systemd/network/10-wlantplink.link
+a.e) reboot
+
+b) find the correct mac address for tp-link
+b.a) iw dev
+b.b) lsusb (should show Realtek Semiconductor Corp. RTL8188GU)
+b.c) mac address: 08:71:90:f3:4c:fb
+b.d) update /etc/systemd/network/10-wlantplink.link with correct MAC
+
 * TODO - INSTALL QEMU
 
 a) These will go into boostrap.sh as part of core:
