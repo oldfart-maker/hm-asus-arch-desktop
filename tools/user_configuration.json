@@ -98,7 +98,8 @@
         "reflector",
         "xwayland-satellite",
 	"avahi",
-	"nss-mdns"
+	"nss-mdns",
+	"usbutils"
     ],
     "parallel_downloads": 0,
     "profile_config": {

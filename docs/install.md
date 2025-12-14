@@ -60,7 +60,7 @@ x.a) sudo pacman -S --needed base-devl git linux-headers
 Build from source
 b) cd ~/projects
 b.a) git clone https://github.com/morrownr/rtw89
-b.b) cd ~/projects/rtw89
+cb.b) cd ~/projects/rtw89
 b.c) make clean modules
 b.d) sudo make install
 b.e) sudo make install_fw
@@ -78,7 +78,7 @@ c.c) nmcli device wifi connect "Hangout" password "gulfshores" ifname wlanX
 a) build + install
 a.b) cd ~/projects/hm-asus-arch-desktop/tools/tp-link/rtw89-morrownr-dkms-git
 a.c) makepkg -si
-a.d) copy 10-wlantplink.link to /etc/systemd/network/10-wlantplink.link
+a.d) sudo cp 10-wlantplink.link  /etc/systemd/network/10-wlantplink.link
 a.e) reboot
 
 b) Verify DKMS
