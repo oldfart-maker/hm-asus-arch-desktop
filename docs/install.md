@@ -80,7 +80,7 @@ c.a) virsh --connect qemu:///session define \
 	 ~/projects/hm-asus-arch-desktop/home/data/apps/vms/ANGEL-WIN.xml
 
 * NOTE: efi error
-sudo pacman -S edk2-ovmf
+sudo pacman -S edk2-ovmf swtpm libtpms
 
 * FIX FILE LOCATION ISSUES IN ANGEL-WIN.xml
 mkdir -p ~/.local/share/libvirt/qemu/nvram
@@ -90,11 +90,12 @@ ls -1 /usr/share/edk2/x64/OVMF_CODE*.fd
 cp /usr/share/edk2/x64/OVMF_VARS.4m.fd \
 	~/.local/share/libvirt/quemu/nvram/ANGEL-WIN__VARS.fd
 	
-* change <loader> and <vram> to this
- <loader readonly="yes" type="pflash" format="raw>">
-	 /usr/share/edk2/x64/OVMF___CODE.4m.fd
- </loader>
- 
- <nvram format="raw">
-	 /home/username/.local/share/libvirt/qemu/nvram/ANGEL-WIN___VARS.fd"
- </nvram>
+* change <os> section to: <loader> and <vram> to this
+  <os>
+    <type arch='x86_64' machine='q35'>hvm</type>
+    <loader readonly='yes' type='pflash' format='raw'>/usr/share/edk2/x64/OVMF_CODE.4m.fd</loader>
+    <nvram format='raw'>/home/username/.local/share/libvirt/qemu/ANGEL-WIN_VARS.fd</nvram>
+    <boot dev='hd'/>
+  </os>
+
+* remove the <seclabel> block

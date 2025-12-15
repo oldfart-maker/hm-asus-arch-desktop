@@ -209,9 +209,4 @@
       <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
     </memballoon>
   </devices>
-  <seclabel type='dynamic' model='dac' relabel='yes'>
-    <label>+959:+959</label>
-    <imagelabel>+959:+959</imagelabel>
-  </seclabel>
 </domain>
-
