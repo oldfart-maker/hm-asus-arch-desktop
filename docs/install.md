@@ -104,3 +104,10 @@ cp /usr/share/edk2/x64/OVMF_VARS.4m.fd \
     <interface type='user'>
       <model type='virtio'/>
     </interface>
+	
+* changed graphics section to:
+    <graphics type='spice'>
+      <listen type='none'/>
+      <image compression='off'/>
+    </graphics>
+
