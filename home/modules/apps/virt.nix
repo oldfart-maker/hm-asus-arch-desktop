@@ -1,24 +1,21 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, repoPath, ... }:
 
 let
-  # Flip this if you ever want to temporarily disable the whole module
   enable = true;
 
-  # Keep your canonical XML(s) in git somewhere like: home/data/vms/*.xml
-  # Adjust these paths to match your repo layout.
+  # Canonical VM XML(s) stored in git
   vmXmls = [
-    ../../data/vms/win11.xml
-    # ../../data/vms/other.xml
+    (repoPath "home/data/apps/vms/ANGEL-ARCH.xml")
+    # (repoPath "home/data/vms/other.xml")
   ];
 
   cfgDir = "${config.home.homeDirectory}/.config/libvirt/qemu";
-
 in
 lib.mkIf enable
 {
   home.packages = with pkgs; [
     virt-manager
-    libvirt     # provides virsh
+    libvirt     # virsh
     qemu_kvm
   ];
 
@@ -34,7 +31,7 @@ lib.mkIf enable
           echo "Syncing ${base} -> ${cfgDir}/${base}"
           cp "${xml}" "${cfgDir}/${base}"
 
-          # Define/refresh the VM for per-user libvirt (qemu:///session)
+          # Define/refresh VM in per-user libvirt session
           if command -v virsh >/dev/null 2>&1; then
             virsh --connect qemu:///session define "${cfgDir}/${base}" >/dev/null 2>&1 || true
           fi
