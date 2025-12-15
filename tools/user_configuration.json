@@ -100,7 +100,9 @@
 	"avahi",
 	"nss-mdns",
 	"usbutils",
-	"iw"
+	"iw",
+	"networkmanager",
+	"ethtool"
     ],
     "parallel_downloads": 0,
     "profile_config": {
