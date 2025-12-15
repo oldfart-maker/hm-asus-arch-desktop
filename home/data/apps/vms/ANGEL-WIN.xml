@@ -148,13 +148,8 @@
       <alias name='virtio-serial0'/>
       <address type='pci' domain='0x0000' bus='0x03' slot='0x00' function='0x0'/>
     </controller>
-    <interface type='network'>
-      <mac address='52:54:00:63:8d:9a'/>
-      <source network='default' portid='5e90a8bd-8503-4836-8184-fbdfbffd4d33' bridge='virbr0'/>
-      <target dev='vnet12'/>
+    <interface type='user'>
       <model type='virtio'/>
-      <alias name='net0'/>
-      <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
     </interface>
     <serial type='pty'>
       <source path='/dev/pts/6'/>

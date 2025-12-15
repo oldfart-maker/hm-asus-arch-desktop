@@ -90,7 +90,7 @@ ls -1 /usr/share/edk2/x64/OVMF_CODE*.fd
 cp /usr/share/edk2/x64/OVMF_VARS.4m.fd \
 	~/.local/share/libvirt/quemu/nvram/ANGEL-WIN__VARS.fd
 	
-* change <os> section to: <loader> and <vram> to this
+* change <os> section to:
   <os>
     <type arch='x86_64' machine='q35'>hvm</type>
     <loader readonly='yes' type='pflash' format='raw'>/usr/share/edk2/x64/OVMF_CODE.4m.fd</loader>
@@ -99,3 +99,8 @@ cp /usr/share/edk2/x64/OVMF_VARS.4m.fd \
   </os>
 
 * remove the <seclabel> block
+
+* changed interface section to:
+    <interface type='user'>
+      <model type='virtio'/>
+    </interface>
