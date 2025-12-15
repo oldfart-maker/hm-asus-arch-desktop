@@ -5,3 +5,7 @@ Host leno
 Host angel
      HostName ANGEL-ARCH.local
      User username
+
+Host dell
+     HostName DELL-ARCH.local
+     User username
