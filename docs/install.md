@@ -38,6 +38,7 @@ f) reboot (remove usb drive)
 * Step 4 - Run setup
 
 a) Connect to network
+a.a) ssh into target system if possible
 b) mkdir -p ~/projects
 c) cd ~/projects
 d) git clone https://github.com/oldfart-maker/hm-asus-arch-desktop.git

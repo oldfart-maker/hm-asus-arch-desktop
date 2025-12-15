@@ -79,7 +79,7 @@
             }
         ]
     },
-    "hostname": "DELL-ARCH",
+    "hostname": "ANGEL-ARCH",
     "kernels": [
         "linux"
     ],
@@ -102,7 +102,7 @@
 	"usbutils",
 	"iw",
 	"networkmanager",
-	"ethtool"
+	"ethtool",
     ],
     "parallel_downloads": 0,
     "profile_config": {
