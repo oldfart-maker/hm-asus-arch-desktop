@@ -15,7 +15,7 @@ lib.mkIf enable
 {
   home.packages = with pkgs; [
     virt-manager
-    libvirt     # virsh
+    libvirt
     qemu_kvm
   ];
 

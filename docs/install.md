@@ -49,11 +49,17 @@ h) ./target-setup.sh
 i) rm -rf hm-asus-arch-desktop
 
 ***
+* Step 5 - Mount the external drive (TODO: Automate This!!0
+a) sudo mkdir -p /mnt/timeshift
+b) sudo mkdir -p /mnt/backup
+c) sudo mount /dev/sdc1 /mnt/timeshift
+d) sudo mount /dev/sdc2 /mnt/backup
 
-* TODO - INSTALL QEMU
+**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
+* Step 5 - Load ANGEL-ARCH vm
+a) restore the image (always first)
+a.a) mkdir -p ~/.local/share/libvirt/images
+a.b) sudo cp --sparse=never -reflink=never \
+	 /mnt/backup/angel-win-vm/ANGEL-WIN.qcow2 ~/.local/share/libvirt/images
 
-a) These will go into boostrap.sh as part of core:
-a.a) sudo pacman -S --needed qemu-full libvirt virt-manager dnsmasq swtpm edk2-ovmf
-a.b) sudo systemctl enable --now libvirtd.service
-a.c) sudo usermod -aG libvirt "$USER"
 
