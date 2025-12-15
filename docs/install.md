@@ -74,3 +74,7 @@ OR...
 b.d) remove the 2 disk lines for the cd-rom *.isos
 AND
 b.d) remove the <emulator> line
+
+c) import (devine) the vm into user libvirt
+c.a) virsh --connect qemu:///session define \
+	 ~/projects/hm-asus-arch-desktop/home/data/apps/vms/ANGEL-WIN.xml
