@@ -18,8 +18,8 @@
       <feature enabled='no' name='enrolled-keys'/>
       <feature enabled='yes' name='secure-boot'/>
     </firmware>
-    <loader readonly='yes' secure='yes' type='pflash' format='raw'>/usr/share/edk2/x64/OVMF_CODE.secboot.4m.fd</loader>
-    <nvram template='/usr/share/edk2/x64/OVMF_VARS.4m.fd' templateFormat='raw' format='raw'>/var/lib/libvirt/qemu/nvram/ANGEL-WIN_VARS.fd</nvram>
+    <loader readonly='yes' type='pflash' format='raw'>/usr/share/edk2/x64/OVMF_CODE.4m.fd</loader>
+    <nvram format='raw'>/home/username/.local/share/libvirt/qemu/ANGEL-WIN_VARS.fd</nvram>
     <boot dev='hd'/>
     <bootmenu enable='yes'/>
   </os>
