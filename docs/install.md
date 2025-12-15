@@ -61,5 +61,16 @@ a) restore the image (always first)
 a.a) mkdir -p ~/.local/share/libvirt/images
 a.b) sudo cp --sparse=never -reflink=never \
 	 /mnt/backup/angel-win-vm/ANGEL-WIN.qcow2 ~/.local/share/libvirt/images
+a.c) mkdir -p ~/.local/share/libvirt/isos
+a.d) sudo cp --sparse=never -reflink=never \
+	 /mnt/backup/angel-win-vm/*.iso ~/.local/share/libvirt/isos
 
-
+b) modify .xml
+b.a) change devices source section for .qcow2 from:
+	'/var/lib/libvirt/images' to '/home/username/.local/share/libvirt/images/
+b.c) change devices source setionc for *.iso from:
+	'/var/lib/libvirt/images' to '/home/username/.local/share/libvirt/isos/
+OR...
+b.d) remove the 2 disk lines for the cd-rom *.isos
+AND
+b.d) remove the <emulator> line

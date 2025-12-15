@@ -46,7 +46,6 @@
     <suspend-to-disk enabled='no'/>
   </pm>
   <devices>
-    <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2' discard='unmap'/>
       <source file='/home/username/.local/share/libvirt/images/ANGEL-WIN.qcow2' index='3'/>
@@ -54,24 +53,6 @@
       <target dev='vda' bus='virtio'/>
       <alias name='virtio-disk0'/>
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
-    </disk>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <source file='/home/username/.local/share/libvirt/isos/Win11_25H2_English_x64.iso' index='2'/>
-      <backingStore/>
-      <target dev='sdb' bus='sata'/>
-      <readonly/>
-      <alias name='sata0-0-1'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='1'/>
-    </disk>
-    <disk type='file' device='cdrom'>
-      <driver name='qemu' type='raw'/>
-      <source file='/home/username/.local/share/libvirt/isos/virtio-win-0.1.285.iso' index='1'/>
-      <backingStore/>
-      <target dev='sdc' bus='sata'/>
-      <readonly/>
-      <alias name='sata0-0-2'/>
-      <address type='drive' controller='0' bus='0' target='0' unit='2'/>
     </disk>
     <controller type='usb' index='0' model='qemu-xhci' ports='15'>
       <alias name='usb'/>
