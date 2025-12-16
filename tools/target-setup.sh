@@ -11,7 +11,7 @@
 #     * assumes ~/projects/sys-secrets already exists (cloned manually)
 #     * installs Nix (no-daemon), Home Manager, and nixGL
 #     * runs home-manager switch using the REMOTE flake:
-#         github:oldfart-maker/hm-dell-arch-laptop#username
+#         github:oldfart-maker/hm-asus-arch-desktop#username
 #
 # Assumptions:
 # - Network is up (Wi-Fi/DNS working)
@@ -34,7 +34,7 @@ installed Arch system. It will:
   - install Nix (no-daemon) and Home Manager
   - install nixGL
   - run home-manager switch with the remote flake:
-      github:oldfart-maker/hm-dell-arch-laptop#username
+      github:oldfart-maker/hm-asus-arch-desktop#username
 
 Before running this script, make sure you have already created:
 
@@ -143,7 +143,7 @@ nix-env -iA nixgl.auto.nixGLDefault || echo "Warning: nix-env -iA nixgl.auto.nix
 
 echo
 echo "-> Running home-manager switch via remote flake"
-FLAKE_REF="github:oldfart-maker/hm-dell-arch-laptop#username"
+FLAKE_REF="github:oldfart-maker/hm-asus-arch-desktop#username"
 
 if command -v nix >/dev/null 2>&1; then
   nix run nixpkgs#home-manager -- switch --flake "${FLAKE_REF}" -v --refresh || {
