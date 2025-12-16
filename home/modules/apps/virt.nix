@@ -10,8 +10,5 @@ lib.mkIf enable
     virt-viewer
     libvirt
     qemu_kvm
-    edk2-ovmf
-    swtpm
-    libtpms
   ];
 }

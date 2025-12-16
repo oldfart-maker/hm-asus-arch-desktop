@@ -103,6 +103,9 @@
 	"iw",
 	"networkmanager",
 	"ethtool",
+	"libtpms,"
+	"swtpm",
+	"edk2-ovmf"
     ],
     "parallel_downloads": 0,
     "profile_config": {

@@ -50,64 +50,9 @@ i) rm -rf hm-asus-arch-desktop
 
 ***
 * Step 5 - Mount the external drive (TODO: Automate This!!0
+
 a) sudo mkdir -p /mnt/timeshift
 b) sudo mkdir -p /mnt/backup
 c) sudo mount /dev/sdc1 /mnt/timeshift
 d) sudo mount /dev/sdc2 /mnt/backup
-
-**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
-* Step 5 - Load ANGEL-ARCH vm
-a) restore the image (always first)
-a.a) mkdir -p ~/.local/share/libvirt/images
-a.b) sudo cp --sparse=never -reflink=never \
-	 /mnt/backup/angel-win-vm/ANGEL-WIN.qcow2 ~/.local/share/libvirt/images
-a.c) mkdir -p ~/.local/share/libvirt/isos
-a.d) sudo cp --sparse=never -reflink=never \
-	 /mnt/backup/angel-win-vm/*.iso ~/.local/share/libvirt/isos
-
-b) modify .xml
-b.a) change devices source section for .qcow2 from:
-	'/var/lib/libvirt/images' to '/home/username/.local/share/libvirt/images/
-b.c) change devices source setionc for *.iso from:
-	'/var/lib/libvirt/images' to '/home/username/.local/share/libvirt/isos/
-OR...
-b.d) remove the 2 disk lines for the cd-rom *.isos
-AND
-b.d) remove the <emulator> line
-
-c) import (define) the vm into user libvirt
-c.a) virsh --connect qemu:///session define \
-	 ~/projects/hm-asus-arch-desktop/home/data/apps/vms/ANGEL-WIN.xml
-
-* NOTE: additional installs needed
-sudo pacman -S edk2-ovmf swtpm libtpms virt-viewer
-
-* FIX FILE LOCATION ISSUES IN ANGEL-WIN.xml
-mkdir -p ~/.local/share/libvirt/qemu/nvram
-
-ls -1 /usr/share/edk2/x64/OVMF_CODE*.fd
-
-cp /usr/share/edk2/x64/OVMF_VARS.4m.fd \
-	~/.local/share/libvirt/quemu/nvram/ANGEL-WIN__VARS.fd
-	
-* change <os> section to:
-  <os>
-    <type arch='x86_64' machine='q35'>hvm</type>
-    <loader readonly='yes' type='pflash' format='raw'>/usr/share/edk2/x64/OVMF_CODE.4m.fd</loader>
-    <nvram format='raw'>/home/username/.local/share/libvirt/qemu/ANGEL-WIN_VARS.fd</nvram>
-    <boot dev='hd'/>
-  </os>
-
-* remove the <seclabel> block
-
-* changed interface section to:
-    <interface type='user'>
-      <model type='virtio'/>
-    </interface>
-	
-* changed graphics section to:
-    <graphics type='spice'>
-      <listen type='none'/>
-      <image compression='off'/>
-    </graphics>
 
