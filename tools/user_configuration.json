@@ -105,7 +105,12 @@
 	"ethtool",
 	"libtpms,"
 	"swtpm",
-	"edk2-ovmf"
+	"edk2-ovmf",
+	"qemu_kvm",
+	"libvirt",
+	"qemu-full",
+	"dnsmasq",
+	"bridge-utils"
     ],
     "parallel_downloads": 0,
     "profile_config": {

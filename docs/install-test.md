@@ -1,21 +1,5 @@
-* INSTALL TEST SYTSTEM
-
-a) After install:
-	a.a) install foot, rofi, ttf-jetbrains-mono-2.304-2-any, emacs-nox,
-		 qutebrowser mesa-utils
-		 
-	a.b) run tangel-sync.sh with the pi as target system
-	
-	a.c) copy from host:
-		a.c.a) ~/.config/rofi
-		a.c.b) ~/.config/niri/*
-		a.c.c) ~/projects/hm-asus-arch-desktop... (niri config.kdl)
-		
-	a.d) remove reference to fish in foot.ini
-	
-	
 ***
-* INSTALL VM ON TEST SYSTEM
+* INSTALL VM
 
 a) base install
 	NOTE: If you get a conflict error select Y.

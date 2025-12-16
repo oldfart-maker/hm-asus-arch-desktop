@@ -49,7 +49,7 @@ h) ./target-setup.sh
 i) rm -rf hm-asus-arch-desktop
 
 ***
-* Step 5 - Mount the external drive (TODO: Automate This!!0
+* Step 5 - Mount the external drive (TODO: Automate This!!)
 
 a) sudo mkdir -p /mnt/timeshift
 b) sudo mkdir -p /mnt/backup
