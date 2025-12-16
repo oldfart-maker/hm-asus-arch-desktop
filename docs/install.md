@@ -79,8 +79,8 @@ c) import (define) the vm into user libvirt
 c.a) virsh --connect qemu:///session define \
 	 ~/projects/hm-asus-arch-desktop/home/data/apps/vms/ANGEL-WIN.xml
 
-* NOTE: efi error
-sudo pacman -S edk2-ovmf swtpm libtpms
+* NOTE: additional installs needed
+sudo pacman -S edk2-ovmf swtpm libtpms virt-viewer
 
 * FIX FILE LOCATION ISSUES IN ANGEL-WIN.xml
 mkdir -p ~/.local/share/libvirt/qemu/nvram
