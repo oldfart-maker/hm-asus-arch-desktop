@@ -1,9 +1,4 @@
-{ config, lib, pkgs, repoPath, ... }:
-
-let
-  enable = true;
-in
-lib.mkIf enable
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     virt-manager
