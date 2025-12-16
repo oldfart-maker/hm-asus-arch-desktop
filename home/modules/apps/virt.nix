@@ -3,6 +3,6 @@
   home.packages = with pkgs; [
     virt-manager
     virt-viewer
-    libvirt-client
+    libvirt
   ];
 }
