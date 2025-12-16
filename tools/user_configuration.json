@@ -103,10 +103,9 @@
 	"iw",
 	"networkmanager",
 	"ethtool",
-	"libtpms,"
+	"libtpms",
 	"swtpm",
 	"edk2-ovmf",
-	"qemu_kvm",
 	"libvirt",
 	"qemu-full",
 	"dnsmasq",
