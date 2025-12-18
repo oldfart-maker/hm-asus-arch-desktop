@@ -7,5 +7,9 @@ Host angel
      User username
 
 Host dell
-     HostName DELL-ARCH.local
+     HostName DEll-ARCH.local
+     User username
+
+Host gpd
+     Hostname GPD-ARCH.local
      User username

@@ -55,4 +55,3 @@ a) sudo mkdir -p /mnt/timeshift
 b) sudo mkdir -p /mnt/backup
 c) sudo mount /dev/sdc1 /mnt/timeshift
 d) sudo mount /dev/sdc2 /mnt/backup
-

@@ -55,23 +55,9 @@ Start / stop the vm
 	
 For the graphics to work on windows you must use the driver:
 	Red Hat VirtIO GPU DOD controller
-	E:\viogpudo\w11\amd64\
+	E:\viogpudo\\w11\amd64\
 	
 To fix the font resolution issues select Scale - Never.
-
-***
-SETTING UP AVAHI SSH SERVER BROWSER
-sudo pacman -S avahi nss-mdns
-sudo systemctl enable --now avahi-daemon.service
-
-copy: ~/projects/hm-asus-arch-desktop/home/data/apps/avahi/nsswitch.conf to target:
-	/etc/
-	
-copy: ~/projects/hm-asus-arch-desktop/home/data/apps/avahi/ssh.service to target:
-	/etc/avahi/services
-
-copy: ~/projects/hm-asus-arch-desktop/home/data/apps/ssh/conf to target:
-	~/.ssh
 
 ***
 * OTHER
