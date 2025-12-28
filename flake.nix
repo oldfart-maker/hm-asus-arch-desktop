@@ -36,8 +36,8 @@
         ];
 
         extraSpecialArgs = {
-          inherit  repoPath;
-          inherit  inputs;
+          inherit  repoPath inputs;
+          inherit  (inputs) self;
         };
       };
   };
