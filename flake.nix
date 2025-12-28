@@ -1,4 +1,4 @@
-g{
+{
   description = "Home Manager for Angel-Arch";
 
   inputs = {
