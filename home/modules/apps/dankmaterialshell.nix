@@ -27,8 +27,8 @@ in
     };
   };
 
-  home.file.".config/DankMaterialShell/settings.json".source =
-    settingsJson;
+#  home.file.".config/DankMaterialShell/settings.json".source =
+#    settingsJson;
 
   home.file.".config/quickshell/dms".source =
     dmsShellAssets;
