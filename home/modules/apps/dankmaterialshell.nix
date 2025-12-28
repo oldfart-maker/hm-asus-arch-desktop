@@ -11,7 +11,7 @@ let
       owner = "InioX";
       repo  = "matugen";
       rev   = "HEAD";
-      hash  = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      hash  = "sha256-USsStRd1J+yjtReWwXt8ZEnzLAp3qM/XkfVknjftd2k=";
     };
   });
     
