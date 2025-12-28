@@ -1,5 +1,5 @@
 {
-  description = "Home Manager for Pi (Arch)";
+  description = "Home Manager for Angel-Arch";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -9,13 +9,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+   dms = {
+     url = "github:AvengeMedia/DankMaterialShell";
+     inputs.nixpkgs.follows = "nixpkgs";
+   };
+
     stylix = {
       url = "github:nix-community/stylix";      
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, stylix, dms, ... }:
   let
     # system = builtins.currentSystem or "aarch64-linux";
     system = builtins.currentSystem or "x86_64-linux";    
@@ -31,8 +36,8 @@
         ];
 
         extraSpecialArgs = {
-          inherit self stylix repoPath;
-          inputs = { inherit self stylix nixpkgs home-manager; };
+          inherit  repoPath;
+          inherit  inputs;
         };
       };
   };
