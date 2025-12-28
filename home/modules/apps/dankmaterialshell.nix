@@ -15,6 +15,7 @@ in
     enable = true;
     systemd.enable = true;
     enableSystemMonitoring = false;
+    withMatugen = true;
   };
 
   home.file.".config/DankMaterialShell/settings.json".source = settingsJson;
