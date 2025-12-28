@@ -1,8 +1,10 @@
-{ inputs, repoPath, ... }:
+{ inputs, pkgs, repoPath, ... }:
 
 let
-  settingsJson =
-    repoPath "home/data/apps/dankmaterialshell/settings.json";
+  settingsJson = repoPath "home/data/apps/dankmaterialshell/settings.json";
+
+  dmsShellAssets =
+    "${inputs.dms.packages.${pkgs.system}.dms-shell}/share/quickshell/dms";
 in
 {
   imports = [
@@ -12,11 +14,9 @@ in
   programs.dank-material-shell = {
     enable = true;
     systemd.enable = true;
-
-    # nixpkgs on Arch doesn't have dgop
     enableSystemMonitoring = false;
   };
 
-  home.file.".config/DankMaterialShell/settings.json".source =
-    settingsJson;
+  home.file.".config/DankMaterialShell/settings.json".source = settingsJson;
+  home.file.".config/quickshell/dms".source = dmsShellAssets;
 }
