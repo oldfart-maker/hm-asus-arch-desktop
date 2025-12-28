@@ -10,7 +10,7 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "InioX";
       repo  = "matugen";
-      rev   = "PUT_COMMIT_SHA_HERE";
+      rev   = "HEAD";
       hash  = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
   });
