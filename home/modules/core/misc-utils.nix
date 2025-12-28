@@ -20,5 +20,6 @@
     pacseek
     ventoy
     simple-scan
+    matugen
   ];
 }
