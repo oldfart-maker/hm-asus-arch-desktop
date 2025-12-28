@@ -10,9 +10,11 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "InioX";
       repo  = "matugen";
-      rev   = "HEAD";
+      rev   = "v2.4.1";
       hash  = "sha256-USsStRd1J+yjtReWwXt8ZEnzLAp3qM/XkfVknjftd2k=";
     };
+    
+      cargoHash = "";    
   });
     
 in
