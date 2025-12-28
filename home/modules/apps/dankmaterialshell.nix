@@ -4,10 +4,9 @@
     inputs.dms.homeModules.dankMaterialShell.default
   ];
 
-  programs.dankMaterialShell = {
+  programs.dank-material-shell = {
     enable = true;
-
-    # Pick ONE startup method:
-    systemd.enable = true;  # simplest, compositor-agnostic
+    systemd.enable = true;
+    enableSystemMonitoring=false;
   };
 }
