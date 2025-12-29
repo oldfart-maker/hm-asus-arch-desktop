@@ -19,17 +19,17 @@ in
   };
 
   # Force DMS to use system matugen (3.1.0 from pacman)
-  systemd.user.services.dms = {
-    Service = {
-      Environment = [
-        "PATH=/usr/bin:/run/current-system/sw/bin"
-      ];
-    };
-  };
+#  systemd.user.services.dms = {
+#    Service = {
+#      Environment = [
+#        "PATH=/usr/bin:/run/current-system/sw/bin"
+#      ];
+#    };
+#  };
 
 #  home.file.".config/DankMaterialShell/settings.json".source =
 #    settingsJson;
 
-  home.file.".config/quickshell/dms".source =
-    dmsShellAssets;
+#  home.file.".config/quickshell/dms".source =
+#    dmsShellAssets;
 }
