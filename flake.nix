@@ -9,18 +9,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-   dms = {
-     url = "github:AvengeMedia/DankMaterialShell";
-     inputs.nixpkgs.follows = "nixpkgs";
-   };
-
     stylix = {
       url = "github:nix-community/stylix";      
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, stylix, dms, ... }:
+  outputs = { self, nixpkgs, home-manager, stylix, ... }:
   let
     # system = builtins.currentSystem or "aarch64-linux";
     system = builtins.currentSystem or "x86_64-linux";    
@@ -36,8 +31,8 @@
         ];
 
         extraSpecialArgs = {
-          inherit  repoPath inputs;
-          inherit  (inputs) self;
+          inherit self stylix repoPath;
+          inputs = { inherit self stylix nixpkgs home-manager; };
         };
       };
   };
