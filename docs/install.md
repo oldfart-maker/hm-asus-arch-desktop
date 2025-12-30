@@ -20,11 +20,20 @@ e) station wlan0 connect MySSID (Hangout)
 
 ***
 * Step 2.5 - Install git
+
 a) sudo pacman -Sy
 b) sudo pacman -S git
 
 ***
 * Step 3 - Boostrap archlinux
+
+NOTE: The disk partitioning may not be correct causing a full disk. The best way to do this is after performing step d, do:
+
+1) archinstall --config user___configuration.json --creds user___credentials.json
+2) update the disk partitioning / ext4
+3) save the *.json files to /
+4) mv /**.json ~/projects/hm-asus-arch-desktop/tools
+5) start step e
 
 # a) mkdir -p ~/projects
 b) cd ~/projects
@@ -49,9 +58,17 @@ h) ./target-setup.sh
 i) rm -rf hm-asus-arch-desktop
 
 ***
-* Step 5 - Mount the external drive (TODO: Automate This!!)
+* Step 5 - Mount the external drive
 
-a) sudo mkdir -p /mnt/timeshift
-b) sudo mkdir -p /mnt/backup
-c) sudo mount /dev/sdc1 /mnt/timeshift
-d) sudo mount /dev/sdc2 /mnt/backup
+NOTE: make sure that the external drive is sdc and change accordingly.
+
+sudo mkdir -p /mnt/timeshift
+sudo mkdir -p /mnt/backup
+sudo mount /dev/sdc1 /mnt/timeshift
+sudo mount /dev/sdc2 /mnt/backup
+
+***
+TODO
+1)
+2)
+3)
