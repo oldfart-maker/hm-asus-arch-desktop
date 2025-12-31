@@ -25,7 +25,7 @@ c.statusbar.position = "bottom"
 
 # Adblock
 from pathlib import Path
-overrides = Path("~/.config/qutebrowser/adblock/overrides.txt").expander().as_uri()
+overrides = Path("~/.config/qutebrowser/overrides.txt").expander().as_uri()
 c.content.blocking.enabled = True
 c.content.blocking.method = 'both'
 c.content.blocking.adblock.lists = [
