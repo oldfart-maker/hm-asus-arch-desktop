@@ -7,7 +7,7 @@ c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.geolocation = False
 c.completion.height = "20%"
 c.prompt.radius = 40
-c.input.insert_mode.auto_load = True
+c.input.insert_mode.auto_load = False
 c.input.insert_mode.auto_leave = True
 c.downloads.position = "bottom"
 c.window.transparent = True
@@ -24,12 +24,15 @@ c.statusbar.show = "always"
 c.statusbar.position = "bottom"
 
 # Adblock
+from pathlib import Path
+overrides = Path("~/.config/qutebrowser/adblock/overrides.txt").expander().as_uri()
 c.content.blocking.enabled = True
 c.content.blocking.method = 'both'
 c.content.blocking.adblock.lists = [
     'https://easylist.to/easylist/easylist.txt',
     'https://easylist.to/easylist/easyprivacy.txt',
-    'https://secure.fanboy.co.nz/fanboy-annoyance.txt'
+    'https://secure.fanboy.co.nz/fanboy-annoyance.txt',
+    overrides
 ]
 
 # Tabs
@@ -84,8 +87,17 @@ config.bind('<Ctrl-p>', 'completion-item-focus prev',   'command')
 config.bind('<Alt-n>',  'command-history-next',         'command')
 config.bind('<Alt-p>',  'command-history-prev',         'command')
 
+# config.bind(
+#    ',b',
+#    "spawn --userscript qute-bitwarden "
+#    "--dmenu-invocation 'rofi -dmenu -i -p Bitwarden' "
+#    "--password-prompt-invocation 'rofi -dmenu -password -p \"Bitwarden master password\"'",
+#    mode='insert'
+#)
+
 # Toggle dark mode
 config.bind(',d', "config-cycle colors.webpage.darkmode.enabled true false")
+
 
 # Load theme (Keep all theme options at the bottom of this config.)
 config.source('gruvbox.py')

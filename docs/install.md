@@ -47,7 +47,8 @@ f) reboot (remove usb drive)
 * Step 4 - Run setup
 
 a) Connect to network
-a.a) ssh into target system if possible
+	a.a) ssh into target system if possible
+	a.b) ssh angel
 b) mkdir -p ~/projects
 c) cd ~/projects
 d) git clone https://github.com/oldfart-maker/hm-asus-arch-desktop.git
@@ -55,7 +56,17 @@ e) git clone https://github.com/oldfart-maker/sys-secrets.git
 f) cd ~/projects/hm-asus-arch-desktop/tools
 g) chmod +x target-setup.sh
 h) ./target-setup.sh
-i) rm -rf hm-asus-arch-desktop
+
+***
+* Step 4.1 - Install dankmaterialshell (if this is the shell you wish to use)
+
+NOTE: The case must be correct: DankMaterialShell
+
+a) ssh into angel
+b) dankmaterialshell (walk through prompts)
+c) mkdir ~/config/DankMaterialShell
+d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
+	~/.config/DankMaterialShell
 
 ***
 * Step 5 - Mount the external drive
