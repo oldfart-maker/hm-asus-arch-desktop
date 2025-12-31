@@ -12,6 +12,7 @@ let
 
   cfgPath  = repoPath "home/data/apps/qutebrowser/config.py";
   themePath = repoPath "home/data/apps/qutebrowser/gruvbox.py";
+  overridesPath = repoPath "home/data/apps/qutebrowser/overrides.txt";
 
   # pdf.js install for to view pdf's in qutebrowser natively
   pdfjs = pkgs.fetchzip {
@@ -28,6 +29,7 @@ in {
   };
 
   home.file.".config/qutebrowser/gruvbox.py".source    = themePath;
+  home.file.".config/qutebrowser/overrides.txt".source    = overridesPath;
 
   xdg.dataFile."qutebrowser/pdfjs".source = pdfjs;
 
