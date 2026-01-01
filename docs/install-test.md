@@ -1,64 +1,67 @@
 ***
-* INSTALL VM
+* INSTALL VM (QEMU/VIRT)
 
-a) base install
-	NOTE: If you get a conflict error select Y.
-	sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq iptables-nft edk2-ovmf swtpm
-	sudo systemctl enable --now libvirtd.service
-	sudo usermod -aG libvirt username
+***
+A) Base Install
 
-b) sudo systemctl restart libvirtd
-
-c) run: groups
-	c.a) verify libvirt is shown with wheel
-
-g) download virtio and windows .isos
-	g.a) https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/
-
-e) when you get the emulator may not have search... message:
-	sudo mv ~/Downloads/Win11_25H2_English_x64.iso /var/lib/libvirt/images/
-	sudo mv ~/Downloads/virtio-win.iso /var/lib/libvirt/images/
-	sudo chown root:root /var/lib/libvirt/images/*.iso
-	sudo chmod 644 /var/lib/libvirt/images/*.iso
-
-d) run virt-manager
-
-f) look at each configuratin image in photos to reproduce
-
-g) handle tpm 2.0
-	g.a) swtpm should already be installed.
-	g.b) add TPM through virt-manager (see photo)
+NOTE: If you get a conflict error select Y.
 	
-h) NOTES ON SELECTING THE CORRECT DRIVER
-	h.a) When windows asks where to install click on the Select Driver button and   go to the viostor/win11/amd and select okay. This will load the disk to be selected for the windows install. 
+	a.a) sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq iptables-nft edk2-ovmf swtpm
+	a.b) sudo systemctl enable --now libvirtd.service
+	a.c) sudo usermod -aG libvirt username
+
+***
+B) Add libvirt to wheel group
+	b.a) groups
+	b.a) verify libvirt is shown with wheel
+
+***
+C) Start libvirtd service
+	c.a sudo systemctl restart libvirtd
+
+***
+D) download / copy *.iso's to target location
+
+NOTE: There are a version of the .iso's on the external drive that can be used initially. 
+
+(virio soure if getting latest virtio driver .iso) https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/)
+
+(external hard drive source)
+	d.a) sudo mkdir -p /var/lib/libvirt/images
+	d.b) sudo cp --sparse=never --reflink=never \
+		/mnt/backup/angel-win-vm/*.iso /var/lib/libvirt/images
+	d.c) sudo chown root:root /var/lib/libvirt/images/*.iso
+	d.d) sudo chmod 644 /var/lib/libvirt/images/*.iso
+
+***
+E) Run virt manager to confgure vm
+
+	e.a) virt-manager
+	e.b) replicate each of the images shown here:
+		https://photos.app.goo.gl/XpKW8A4EVhf8rvZh9
+	e.c) configure tpm 2.0
+	e.d) handle tpm 2.0
+	e.e) add TPM through virt-manager (see photo)
 	
+***
+F) Install windows vm
+
+NOTE: When windows asks where it should be installed click on the select driver button adn go to viostar/win11/amd and select ok. The screen will be refreshed with the disk that should be selected for where windows is to be installed.
+
+NOTE: During windows installation you will be prompted to load the network driver from:	"E\\netkvm\\win11\\amd64". This may not work the first time. If it does not just repeat the process and it will load the driver the second time. There is a timing issue where it can take about 60 seconds to load the driver an connect to the network. It may say failed at first. This has worked each time. There is a compatability issue with the NIC in this box that can be fixed by using a backhaul device of a simple usb wifi dongle.
+
+
 i) After windows installs go to device manager and look for the yellow triangles and install the correct drivers:
+
 	i.a) Network driver: "E:\\NetKVM\\w11\amd64"
-	i.c) Install client tools "E:\\virtio-win-guest-tools.exe"
-	
-j) During installation you will be prompted to load the network driver from:
-	"E\\netkvm\\win11\\amd64". This may not work the first time. If it does not just   repeat the process and it will load the driver the second time.
-	
-	
-Use this command to dump the xml to get the vm configs. They are way to involved to detail out:
+	i.b) Install client tools "E:\\virtio-win-guest-tools.exe"
+	i.c) Ensure that the correct display driver is installed. It needs to be the virtio driver, not the windows driver or the resolution will not work:
+			Red Hat VirtIO GPU DOD controller
+			E:\viogpudo\\w11\amd64\
 
-	sudo virsh list --all
-	sudo virsh dumpxml ANGEL-WIN > ANGEL-WIN.xml
+NOTE: I have found that the best way to address scaling issues on the monitor is to select the option Scale - Never. In addition, installing truetype on windows helps with the resolution.
 
-Connect / Start VM with config:
-	virsh --connect qemu:///system list --all
-	virsh --connect qemu:///system dumpxml ANGEL-WIN > ANGEL-WIN.xml
-	
-Start / stop the vm
-	sudo virsh shutdown ANGEL-WIN
-	sudo virsh start ANGEL-WIN
-	
-For the graphics to work on windows you must use the driver:
-	Red Hat VirtIO GPU DOD controller
-	E:\viogpudo\\w11\amd64\
-	
-To fix the font resolution issues select Scale - Never.
-
+NOTE: Ensure that you are connecting to the correct service so that QEMU can see the VM. (Need to clarity what the issue is here on the next install)
 ***
 * OTHER
 
