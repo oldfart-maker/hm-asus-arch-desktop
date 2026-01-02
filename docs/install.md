@@ -21,8 +21,10 @@ e) station wlan0 connect MySSID (Hangout)
 ***
 * Step 2.5 - Install git
 
-a) sudo pacman -Sy
-b) sudo pacman -S git
+a) timedatectl set-ntp true
+b) timedatectl status
+c) sudo pacman -Sy archlinux-keyring
+d) sudo pacman -S git
 
 ***
 * Step 3 - Boostrap archlinux
@@ -54,8 +56,7 @@ c) cd ~/projects
 d) git clone https://github.com/oldfart-maker/hm-asus-arch-desktop.git
 e) git clone https://github.com/oldfart-maker/sys-secrets.git
 f) cd ~/projects/hm-asus-arch-desktop/tools
-g) chmod +x target-setup.sh
-h) ./target-setup.sh
+g) ./target-setup.sh
 
 ***
 * Step 4.1 - Install dankmaterialshell (if this is the shell you wish to use)
