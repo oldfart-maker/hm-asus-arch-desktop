@@ -36,10 +36,12 @@
         "avahi",
         "base-devel",
         "bridge-utils",
+        "dmidecode",
         "dnsmasq",
         "edk2-ovmf",
         "ethtool",
         "git",
+        "iptables-nft",
         "iw",
         "libtpms",
         "libvirt",
@@ -52,7 +54,7 @@
         "virt-manager",
         "virt-viewer",
         "xwayland-satellite",
-        "iptables-nft"
+        "rsync"
     ],
     "parallel_downloads": 0,
     "profile_config": {
