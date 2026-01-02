@@ -74,3 +74,5 @@ a) If you get the error when starting QEMU that the default network is not activ
 	a.b) sudo virsh net-autostart default
 	
 	a.c) sudo virsh net-list --all
+	
+***

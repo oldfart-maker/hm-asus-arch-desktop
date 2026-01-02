@@ -22,9 +22,10 @@ e) station wlan0 connect MySSID (Hangout)
 * Step 2.5 - Install git
 
 a) timedatectl set-ntp true
-b) timedatectl status
-c) sudo pacman -Sy archlinux-keyring
-d) sudo pacman -S git
+b) sleep 16
+c) timedatectl status
+d) sudo pacman -Sy archlinux-keyring
+e) sudo pacman -S git
 
 ***
 * Step 3 - Boostrap archlinux
