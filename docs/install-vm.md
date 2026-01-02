@@ -4,13 +4,18 @@
 ***
 A) Base Install
 
-NOTE: If you get a conflict error for iptables-nft select Y to replace.
-	
-	a.a) sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq iptables edk2-ovmf swtpm
+
+NOTE: (1/1/2026) Step a.a should be now part of archinstall. Once we have a reproduceable install using archinstall step a.a needs to be removed. The issue appears to be with libvirt being pulled out of home manager which is the only thing that changed and broke my vm graphics issue (even though it is theoretically unrelated with the vm install). So we are rebaselining with these exact steps. Ideally we do not want libvirtd in virt.nix which it is during this rebaseline as it is the only install that worked.
+
+NOTE: (1/2/2026) After nearly 8 hours of debugging it looks as if I deselect OpenGL and 3d acceleration it allows a windows install. While skeptical, these settings are not suppose to affect the virtio driver interface to my GPU still allowing light Sketchup and Fusion 360. We will test this now and then try a full reimage removing step a.a.
+
+	a.a) sudo pacman -S qemu-full virt-manager virt-viewer \
+		dnsmasq iptables edk2-ovmf swtpm
 	
 	a.b) sudo usermod -aG libvirt username	
-		a.b.a) run: groups
-		a.b.b) verify libvirt is shown with wheel
+		a.b.a) logout / login
+		a.b.b) run: groups
+		a.b.c) verify libvirt is shown with wheel
 		
 	a.c) sudo systemctl enable --now libvirtd.service
 
@@ -21,7 +26,6 @@ NOTE: There is a version of the .iso's on the external drive that can be used in
 
 To get the latest virtio driver: https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/
 
-external hard drive source
 	d.a) sudo mkdir -p /var/lib/libvirt/images
 	
 	d.b) sudo cp --sparse=never --reflink=never \
@@ -32,33 +36,32 @@ external hard drive source
 	d.d) sudo chmod 644 /var/lib/libvirt/images/*.iso
 
 ***
-E) Run virt manager to confgure vm
+E) Run virt-manager to confgure
 
-NOTE: If TPM is not listed as a configuration option then it needs to be installed. To do this:
-	1) Add Hardware
-	2) Select TPM
-	3) Use the google photo for configuration options
+NOTE: Use google photos album (Windows VM 2.0) for configuration options
 
 	e.a) virt-manager
 	
 	e.b) replicate each of the images shown here:
-		https://photos.app.goo.gl/XpKW8A4EVhf8rvZh9
-	
+		https://photos.app.goo.gl/Cp31HZSZnJBuxyd18
 ***
-F) Install windows vm
+F) Install windows
 
-NOTE: When windows asks where it should be installed click on the select driver button adn go to viostor/win11/amd and select ok. The screen will be refreshed with the disk that should be selected for where windows is to be installed.
+NOTE: When windows asks where it should be installed click on the select driver button and go to viostor/win11/amd and select ok. The screen will be refreshed with the disk that should be selected for where windows is to be installed.
 
 NOTE: During windows installation you will be prompted to load the network driver from:	"E\\netkvm\\win11\\amd64". This may not work the first time. If it does not just repeat the process and it will load the driver the second time. There is a timing issue where it can take about 60 seconds to load the driver an connect to the network. It may say failed at first. This has worked each time. There is a compatability issue with the NIC in this box that can be fixed by using a backhaul device of a simple usb wifi dongle.
 
 
-i) After windows installs go to device manager and look for the yellow triangles and install the correct drivers:
+NOTE: After windows installs go to device manager and look for the yellow triangles and install the correct drivers:
 
-	i.a) Network driver: "E:\\NetKVM\\w11\amd64"
+Network driver location: "E:\\NetKVM\\w11\amd64"
+
+***
+G) Install guest tools
+
+	g.a) Install client tools "E:\\virtio-win-guest-tools.exe"
 	
-	i.b) Install client tools "E:\\virtio-win-guest-tools.exe"
-	
-	i.c) Ensure that the correct display driver is installed. It needs to be the virtio driver, not the windows driver or the resolution will not work:
+	g.b) Ensure that the correct display driver is installed. It needs to be the virtio driver, not the windows driver or the resolution will not work:
 			Red Hat VirtIO GPU DOD controller
 			E:\viogpudo\\w11\amd64\
 
@@ -68,11 +71,10 @@ NOTE: Ensure that you are connecting to the correct service so that QEMU can see
 ***
 * OTHER
 
-a) If you get the error when starting QEMU that the default network is not active:
+a) If you get an error that the default network cannot be found then:
+
 	a.a) sudo virsh net-start default
-	
 	a.b) sudo virsh net-autostart default
-	
 	a.c) sudo virsh net-list --all
 	
 ***
