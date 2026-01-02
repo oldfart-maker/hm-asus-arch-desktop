@@ -6,7 +6,7 @@ A) Base Install
 
 NOTE: If you get a conflict error for iptables-nft select Y to replace.
 	
-	a.a) sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq iptables-nft edk2-ovmf swtpm
+	a.a) sudo pacman -S qemu-full virt-manager virt-viewer dnsmasq iptables edk2-ovmf swtpm
 	
 	a.b) sudo usermod -aG libvirt username	
 		a.b.a) run: groups
@@ -25,7 +25,7 @@ external hard drive source
 	d.a) sudo mkdir -p /var/lib/libvirt/images
 	
 	d.b) sudo cp --sparse=never --reflink=never \
-		/mnt/backup/angel-win-vm/*.iso /var/lib/libvirt/images
+		/mnt/backup/win-vm-isos/*.iso /var/lib/libvirt/images
 		
 	d.c) sudo chown root:root /var/lib/libvirt/images/*.iso
 	
