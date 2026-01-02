@@ -51,8 +51,6 @@
         "reflector",
         "swtpm",
         "usbutils",
-        "virt-manager",
-        "virt-viewer",
         "xwayland-satellite",
         "rsync"
     ],
