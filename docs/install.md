@@ -30,7 +30,7 @@ e) sudo pacman -S git
 ***
 * Step 3 - Boostrap archlinux
 
-NOTE: The disk partitioning may not be correct causing a full disk. The best way to do this is after performing step d, do:
+NOTE: The disk partitioning may not be correct causing a full disk as it tries to install on the sdcard. The best way to do this is after performing step d, do:
 
 1) archinstall --config user___configuration.json --creds user___credentials.json
 2) update the disk partitioning / ext4
@@ -59,7 +59,7 @@ e) git clone https://github.com/oldfart-maker/sys-secrets.git
 f) cd ~/projects/hm-asus-arch-desktop/tools
 g) ./target-setup.sh
 
-***
+***g
 * Step 4.1 - Install dankmaterialshell (if this is the shell you wish to use)
 
 NOTE: The case must be correct: DankMaterialShell
@@ -74,13 +74,13 @@ d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 * Step 5 - Mount the external drive
 
 NOTE: make sure that the external drive is sdc and change accordingly.
+NOTE: remove this after next boostrap.sh test!
 
 sudo mkdir -p /mnt/timeshift
 sudo mkdir -p /mnt/backup
 sudo mount /dev/sdc1 /mnt/timeshift
 sudo mount /dev/sdc2 /mnt/backup
 
-***
 ***
 * Step 5 - Configure samba
 

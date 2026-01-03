@@ -218,43 +218,45 @@ setup_ssh_in_target() {
 setup_external_mounts_in_target() {
   echo "=== bootstrap.sh: setting up external mountpoints in target ==="
 
-  # These are mountpoints *inside the installed system*
-  install -d -m 0755 "$TARGET_MNT/mnt/timeshift"
-  install -d -m 0755 "$TARGET_MNT/mnt/backup"
+  # Mountpoints *inside the installed system*
+  mkdir -p "$TARGET_MNT/mnt/timeshift" "$TARGET_MNT/mnt/backup"
+  chmod 0755 "$TARGET_MNT/mnt/timeshift" "$TARGET_MNT/mnt/backup"
 
-  # Persist mounts into the target fstab using UUIDs (stable across /dev/sdX changes).
   local fstab="$TARGET_MNT/etc/fstab"
   touch "$fstab"
 
   add_fstab_uuid_entry() {
     local dev="$1"
     local mnt="$2"
-    # Best default for removable-ish disks:
-    # - nofail: don't block boot if absent
-    # - x-systemd.automount: mount on first access; avoids early-boot hangs/order issues
-    local opts="${3:-defaults,nofail,x-systemd.automount}"
+    local opts="${3:-defaults,nofail}"
 
-    [[ -b "$dev" ]] || return 0
+    if [[ ! -b "$dev" ]]; then
+      echo "WARN: $dev not found; skipping fstab entry for $mnt"
+      return 0
+    fi
 
     local uuid fstype
     uuid="$(blkid -s UUID -o value "$dev" 2>/dev/null || true)"
     fstype="$(blkid -s TYPE -o value "$dev" 2>/dev/null || true)"
 
-    if [[ -n "$uuid" && -n "$fstype" ]]; then
-      if ! grep -qE "^[[:space:]]*UUID=${uuid}[[:space:]]+${mnt}[[:space:]]" "$fstab"; then
-        echo "Adding fstab entry for $dev -> $mnt (UUID=$uuid, TYPE=$fstype)"
-        printf "UUID=%s\t%s\t%s\t%s\t0 2\n" "$uuid" "$mnt" "$fstype" "$opts" >> "$fstab"
-      else
-        echo "fstab already has entry for UUID=$uuid at $mnt"
-      fi
-    else
-      echo "WARN: could not read UUID/TYPE for $dev; skipping fstab entry"
+    if [[ -z "$uuid" || -z "$fstype" ]]; then
+      echo "WARN: could not read UUID/TYPE for $dev; skipping fstab entry for $mnt"
+      return 0
     fi
+
+    # Remove any existing non-comment entry for this mountpoint (prevents stale lines)
+    sed -i "\|^[^#].*[[:space:]]${mnt}[[:space:]]|d" "$fstab"
+
+    echo "Adding fstab entry for $dev -> $mnt (UUID=$uuid, TYPE=$fstype)"
+    printf "UUID=%s\t%s\t%s\t%s\t0 2\n" "$uuid" "$mnt" "$fstype" "$opts" >> "$fstab"
   }
 
-  # External drive partitions (adjust if layout changes)
+  # External partitions (adjust if layout changes)
   add_fstab_uuid_entry "/dev/sdc1" "/mnt/timeshift"
   add_fstab_uuid_entry "/dev/sdc2" "/mnt/backup"
+
+  echo "=== bootstrap.sh: fstab entries now ==="
+  grep -nE '(/mnt/timeshift|/mnt/backup)' "$fstab" || true
 }
 
 setup_smb_in_target() {
