@@ -182,7 +182,7 @@ setup_ssh_in_target() {
   echo "=== bootstrap.sh: setting up ssh in target ==="
 
   # ---- HARD-CODE TARGET USER ----
-  local TARGET_USER="mike"
+  local TARGET_USER="username"
 
   # ---- SOURCE ----
   local sshconfig_src
@@ -215,11 +215,99 @@ setup_ssh_in_target() {
   arch-chroot "$TARGET_MNT" chown -R "$TARGET_USER:$TARGET_USER" "/home/$TARGET_USER/.ssh"
 }
 
+setup_external_mounts_in_target() {
+  echo "=== bootstrap.sh: setting up external mountpoints in target ==="
+
+  # These are mountpoints *inside the installed system*
+  install -d -m 0755 "$TARGET_MNT/mnt/timeshift"
+  install -d -m 0755 "$TARGET_MNT/mnt/backup"
+
+  # Persist mounts into the target fstab using UUIDs (stable across /dev/sdX changes).
+  local fstab="$TARGET_MNT/etc/fstab"
+  touch "$fstab"
+
+  add_fstab_uuid_entry() {
+    local dev="$1"
+    local mnt="$2"
+    # Best default for removable-ish disks:
+    # - nofail: don't block boot if absent
+    # - x-systemd.automount: mount on first access; avoids early-boot hangs/order issues
+    local opts="${3:-defaults,nofail,x-systemd.automount}"
+
+    [[ -b "$dev" ]] || return 0
+
+    local uuid fstype
+    uuid="$(blkid -s UUID -o value "$dev" 2>/dev/null || true)"
+    fstype="$(blkid -s TYPE -o value "$dev" 2>/dev/null || true)"
+
+    if [[ -n "$uuid" && -n "$fstype" ]]; then
+      if ! grep -qE "^[[:space:]]*UUID=${uuid}[[:space:]]+${mnt}[[:space:]]" "$fstab"; then
+        echo "Adding fstab entry for $dev -> $mnt (UUID=$uuid, TYPE=$fstype)"
+        printf "UUID=%s\t%s\t%s\t%s\t0 2\n" "$uuid" "$mnt" "$fstype" "$opts" >> "$fstab"
+      else
+        echo "fstab already has entry for UUID=$uuid at $mnt"
+      fi
+    else
+      echo "WARN: could not read UUID/TYPE for $dev; skipping fstab entry"
+    fi
+  }
+
+  # External drive partitions (adjust if layout changes)
+  add_fstab_uuid_entry "/dev/sdc1" "/mnt/timeshift"
+  add_fstab_uuid_entry "/dev/sdc2" "/mnt/backup"
+}
+
+setup_smb_in_target() {
+  echo "=== bootstrap.sh: setting up samba in target ==="
+
+  # ---- HARD-CODE TARGET USER ----
+  local TARGET_USER="username"
+
+  # ---- SOURCE ----
+  local smbconf_src
+  smbconf_src="$REPO_ROOT/home/data/apps/smb/smb.conf"
+
+  # ---- TARGET PATHS (INSIDE INSTALLED SYSTEM) ----
+  local samba_dir smbconf_tgt
+  samba_dir="$TARGET_MNT/etc/samba"
+  smbconf_tgt="$samba_dir/smb.conf"
+
+  [[ -f "$smbconf_src" ]] || die "Missing smb.conf source file: $smbconf_src"
+  install -d -m 0755 "$samba_dir"
+
+  # ensure share path exists inside installed system
+  install -d -m 0755 "$TARGET_MNT/mnt/backup"
+
+  # install samba package (always safe / idempotent)
+  arch-chroot "$TARGET_MNT" pacman --noconfirm -S --needed samba
+
+  echo "Installing smb.conf from: $smbconf_src"
+  install -m 0644 "$smbconf_src" "$smbconf_tgt"
+
+  # enable services
+  arch-chroot "$TARGET_MNT" systemctl enable smb.service nmb.service
+
+  # Provision samba credentials:
+  # We intentionally do NOT store passwords in git. If running interactively, prompt once now.
+  if [[ -t 0 ]]; then
+    echo "=== bootstrap.sh: samba user provisioning ==="
+    echo "You will be prompted to set the Samba password for: $TARGET_USER"
+    echo "Tip: this can match your Linux password, or be different."
+    arch-chroot "$TARGET_MNT" smbpasswd -a "$TARGET_USER"
+    arch-chroot "$TARGET_MNT" smbpasswd -e "$TARGET_USER" || true
+  else
+    echo "NOTE: Non-interactive session; skipping smbpasswd provisioning."
+    echo "After boot, run: sudo smbpasswd -a $TARGET_USER"
+  fi
+}
+
 post_install() {
   echo "=== bootstrap.sh: running post-install configuration ==="
   ensure_target_mounted
+  setup_external_mounts_in_target
   setup_avahi_in_target
   setup_ssh_in_target
+  setup_smb_in_target
 }
 
 main() {

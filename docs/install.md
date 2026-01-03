@@ -81,7 +81,29 @@ sudo mount /dev/sdc1 /mnt/timeshift
 sudo mount /dev/sdc2 /mnt/backup
 
 ***
+***
+* Step 5 - Configure samba
+
+NOTE: Step 5 must be completed before starting the services
+
+a) copy config from repo
+	a.a) sudo cp ~/projects/hm-asus-arch-desktop/home/data/apps/smb/smb.conf /etc/smb
+
+NOTE: If step b gives an error add the user to linux first
+	b.a) sudo useradd -m username
+	b.b) sudo passwd username
+
+b) create samba password
+	b.a) sudo smbpasswd -a username
+	b.b) sudo smbpasswd -e username
+	
+c) restart samba
+	c.a) sudo systemctl restart nmb,smb
+
+NOTE: to access this drive from windows vm:
+1) map network drive in windows:
+	1.1) "\\\\\192.168.122.1\\share"
+
 TODO
-1)
-2)
-3)
+1) Add samba install to archinstall
+2) Setup smb install in boostrap.sh
