@@ -181,28 +181,38 @@ setup_avahi_in_target() {
 setup_ssh_in_target() {
   echo "=== bootstrap.sh: setting up ssh in target ==="
 
-  # source / target locations
-  local sshconfig_src sshconfig_tgt
-  sshconfig_src="$REPO_ROOT/home/data/apps/ssh/config"
-  sshconfig_tgt="$TARGET_MNT~/.ssh/config"
+  # ---- HARD-CODE TARGET USER ----
+  local TARGET_USER="mike"
 
-  # ensure source files exist
+  # ---- SOURCE ----
+  local sshconfig_src
+  sshconfig_src="$REPO_ROOT/home/data/apps/ssh/config"
+
+  # ---- TARGET PATHS (INSIDE INSTALLED SYSTEM) ----
+  local ssh_dir sshconfig_tgt
+  ssh_dir="$TARGET_MNT/home/$TARGET_USER/.ssh"
+  sshconfig_tgt="$ssh_dir/config"
+
+  # ensure source file exists
   [[ -f "$sshconfig_src" ]] || die "ssh config not found at: $sshconfig_src"
 
-  # ensure target dirs exist
-  mkdir -p "$TARGET_MNT~/.ssh"
+  # ensure target .ssh dir exists with correct perms
+  install -d -m 700 "$ssh_dir"
 
-  # Install packages into the target system (idempotent)
+  # install ssh client into target (idempotent)
   if [[ "$MODE" == "post-only" ]]; then
-      arch-chroot "$TARGET_MNT" pacman --noconfirm -S --needed openssh
+    arch-chroot "$TARGET_MNT" pacman --noconfirm -S --needed openssh
   fi
 
-  # Enable the systemd service (will start on first boot)
+  # enable ssh daemon for inbound connections
   arch-chroot "$TARGET_MNT" systemctl enable sshd.service
 
-  # Install configuration files
+  # install ssh config with correct perms
   echo "Installing ssh config from: $sshconfig_src"
-  install -m 644 "$sshconfig_src" "$sshconfig_tgt"
+  install -m 600 "$sshconfig_src" "$sshconfig_tgt"
+
+  # fix ownership (ISO runs as root)
+  arch-chroot "$TARGET_MNT" chown -R "$TARGET_USER:$TARGET_USER" "/home/$TARGET_USER/.ssh"
 }
 
 post_install() {
