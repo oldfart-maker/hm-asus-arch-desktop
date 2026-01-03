@@ -9,15 +9,77 @@
     },
     "archinstall-language": "English",
     "auth_config": {},
-    "bootloader_config": {
-        "bootloader": "Grub",
-        "removable": false,
-        "uki": false
-    },
+    "bootloader": "Grub",
     "custom_commands": [],
     "disk_config": {
+        "btrfs_options": {
+            "snapshot_config": null
+        },
         "config_type": "default_layout",
-        "device_modifications": []
+        "device_modifications": [
+            {
+                "device": "/dev/sdb",
+                "partitions": [
+                    {
+                        "btrfs": [],
+                        "dev_path": null,
+                        "flags": [
+                            "boot"
+                        ],
+                        "fs_type": "fat32",
+                        "mount_options": [],
+                        "mountpoint": "/boot",
+                        "obj_id": "437db42e-a610-4dba-b3e7-52dbf33f057c",
+                        "size": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "GiB",
+                            "value": 1
+                        },
+                        "start": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "MiB",
+                            "value": 1
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    },
+                    {
+                        "btrfs": [],
+                        "dev_path": null,
+                        "flags": [],
+                        "fs_type": "ext4",
+                        "mount_options": [],
+                        "mountpoint": "/",
+                        "obj_id": "b98f5ccc-1074-4c9c-b15c-065548d7fcd9",
+                        "size": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "B",
+                            "value": 511035047936
+                        },
+                        "start": {
+                            "sector_size": {
+                                "unit": "B",
+                                "value": 512
+                            },
+                            "unit": "B",
+                            "value": 1074790400
+                        },
+                        "status": "create",
+                        "type": "primary"
+                    }
+                ],
+                "wipe": true
+            }
+        ]
     },
     "hostname": "ANGEL-ARCH",
     "kernels": [
@@ -41,7 +103,7 @@
         "edk2-ovmf",
         "ethtool",
         "git",
-	"iptables",
+        "iptables",
         "iw",
         "libtpms",
         "libvirt",
@@ -56,7 +118,7 @@
     ],
     "parallel_downloads": 0,
     "profile_config": {
-        "gfx_driver": "Intel (open-source)",
+        "gfx_driver": "AMD / ATI (open-source)",
         "greeter": "gdm",
         "profile": {
             "custom_settings": {
@@ -74,5 +136,5 @@
     "services": [],
     "swap": true,
     "timezone": "US/Eastern",
-    "version": "3.0.14"
+    "version": "3.0.11"
 }

@@ -9,15 +9,15 @@ NOTE: (1/1/2026) Step a.a should be now part of archinstall. Once we have a repr
 
 NOTE: (1/2/2026) After nearly 8 hours of debugging it looks as if I deselect OpenGL and 3d acceleration it allows a windows install. While skeptical, these settings are not suppose to affect the virtio driver interface to my GPU still allowing light Sketchup and Fusion 360. We will test this now and then try a full reimage removing step a.a.
 
-	a.a) sudo pacman -S qemu-full virt-manager virt-viewer \
+	N/A) sudo pacman -S qemu-full virt-manager virt-viewer \
 		dnsmasq iptables edk2-ovmf swtpm
 	
-	a.b) sudo usermod -aG libvirt username	
+	a.a) sudo usermod -aG libvirt username	
 		a.b.a) logout / login
 		a.b.b) run: groups
 		a.b.c) verify libvirt is shown with wheel
 		
-	a.c) sudo systemctl enable --now libvirtd.service
+	a.b) sudo systemctl enable --now libvirtd.service
 
 ***
 D) download / copy *.iso's to target location
