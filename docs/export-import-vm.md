@@ -27,24 +27,17 @@ A) Change to external HD dir
 	a.a) cd /mnt/backup/angel-win11-exports
 	
 B) copy the disk image
- 	b.a) sudo rsync -a --sparse ARCH-WIN11.qcow2 \
+ 	b.a) sudo rsync -a --sparse ANGEL-WIN11.qcow2 \
 		/var/lib/libvirt/images
 
-C) import configs
-	c.a) sudo virsh define ANGEL-WIN11.xml
-
-D) copy .isos
-NOTE: This is needs to be cleaned up. The vm will not start correctly with previously mounted .isos. Once the .isos are unmounted to not perform this ste as part of the import.
-	d.a) sudo cp --sparse=never --reflink=never \
+C) copy .isos
+NOTE: The vm will not start correctly without previously mounted .isos. Once the .isos are unmounted do not perform this step as part of the import.
+	c.a) sudo cp --sparse=never --reflink=never \
 		/mnt/backup/win-vm-isos/*.iso /var/lib/libvirt/images
 
-E) start libvirt
-	e.a) sudo systemctl enable --now libvirtd.service
+D) import configs
+	d.a) sudo virsh define ANGEL-WIN11.xml
 	
-E) NOTE: you will likely need to start the 'default' network:
-	e.a) sudo virsh net-start default
-	e.b) sudo virsh net-autostart default
-	
-F) Start the vm from the CLI to check for any errors:
-	f.a) sudo virsh start ANGEL-WIN11
-	f.b) sudo virsh list --all
+E) Start the vm from the CLI to check for any errors:
+	e.a) sudo virsh start ANGEL-WIN11
+	e.b) sudo virsh list --all

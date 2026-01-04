@@ -303,6 +303,45 @@ setup_smb_in_target() {
   fi
 }
 
+setup_virt_in_target() {
+  echo "=== bootstrap.sh: setting up libvirt/qemu in target ==="
+
+  # ---- HARD-CODE TARGET USER ----
+  local TARGET_USER="username"
+
+  # Packages: NAT networking + virt-manager UI
+  # (qemu-base is usually enough; use qemu-full if you prefer)
+  arch-chroot "$TARGET_MNT" pacman --noconfirm -S --needed \
+    qemu-base libvirt virt-manager dnsmasq iptables-nft bridge-utils
+
+  # Group membership for managing libvirt without sudo (still may need polkit rules depending on your setup)
+  arch-chroot "$TARGET_MNT" usermod -aG libvirt "$TARGET_USER" || true
+
+  # Enable libvirt services (do NOT use --now in chroot)
+  arch-chroot "$TARGET_MNT" systemctl enable libvirtd.service
+  arch-chroot "$TARGET_MNT" systemctl enable virtlogd.service || true
+
+  # Ensure default NAT network autostarts on boot.
+  # This avoids needing `virsh net-start default` during bootstrap (daemon isn’t running yet).
+  mkdir -p "$TARGET_MNT/etc/libvirt/qemu/networks/autostart"
+
+  # If the default network XML exists, link it into autostart.
+  # (On Arch, default.xml is commonly present after libvirt install; if not, you can define it later with virsh.)
+  if [[ -f "$TARGET_MNT/etc/libvirt/qemu/networks/default.xml" ]]; then
+    ln -sf ../default.xml "$TARGET_MNT/etc/libvirt/qemu/networks/autostart/default.xml"
+    echo "Configured libvirt default network to autostart."
+  else
+    echo "NOTE: $TARGET_MNT/etc/libvirt/qemu/networks/default.xml not found."
+    echo "After first boot, run: sudo virsh net-define /etc/libvirt/qemu/networks/default.xml"
+    echo "and then: sudo virsh net-autostart default && sudo virsh net-start default"
+  fi
+
+  echo "=== bootstrap.sh: libvirt setup complete ==="
+  echo "After first boot, you can verify with:"
+  echo "  systemctl status libvirtd"
+  echo "  virsh net-list --all"
+}
+
 post_install() {
   echo "=== bootstrap.sh: running post-install configuration ==="
   ensure_target_mounted
@@ -310,6 +349,7 @@ post_install() {
   setup_avahi_in_target
   setup_ssh_in_target
   setup_smb_in_target
+  setup_virt_in_target
 }
 
 main() {

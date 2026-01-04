@@ -59,51 +59,22 @@ e) git clone https://github.com/oldfart-maker/sys-secrets.git
 f) cd ~/projects/hm-asus-arch-desktop/tools
 g) ./target-setup.sh
 
-***g
-* Step 4.1 - Install dankmaterialshell (if this is the shell you wish to use)
+
+***
+* Step 5 - Start virt
+
+a) sudo systemctl enable --now libvirtd.service
+b) sudo virsh net-start default
+c) sudo virsh net-autostart default
+
+***
+* Step 6 - Install dankmaterialshell (if this is the shell you wish to use)
 
 NOTE: The case must be correct: DankMaterialShell
 
-a) ssh into angel
+a) ssh ixnto angel
 b) dankmaterialshell (walk through prompts)
 c) mkdir ~/config/DankMaterialShell
 d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 	~/.config/DankMaterialShell
 
-***
-* Step 5 - Mount the external drive
-
-NOTE: make sure that the external drive is sdc and change accordingly.
-NOTE: remove this after next boostrap.sh test!
-
-sudo mkdir -p /mnt/timeshift
-sudo mkdir -p /mnt/backup
-sudo mount /dev/sdc1 /mnt/timeshift
-sudo mount /dev/sdc2 /mnt/backup
-
-***
-* Step 5 - Configure samba
-
-NOTE: Step 5 must be completed before starting the services
-
-a) copy config from repo
-	a.a) sudo cp ~/projects/hm-asus-arch-desktop/home/data/apps/smb/smb.conf /etc/smb
-
-NOTE: If step b gives an error add the user to linux first
-	b.a) sudo useradd -m username
-	b.b) sudo passwd username
-
-b) create samba password
-	b.a) sudo smbpasswd -a username
-	b.b) sudo smbpasswd -e username
-	
-c) restart samba
-	c.a) sudo systemctl restart nmb,smb
-
-NOTE: to access this drive from windows vm:
-1) map network drive in windows:
-	1.1) "\\\\\192.168.122.1\\share"
-
-TODO
-1) Add samba install to archinstall
-2) Setup smb install in boostrap.sh

@@ -2,22 +2,11 @@
 * INSTALL VM (QEMU/VIRT)
 
 ***
-A) Base Install
-
-
-NOTE: (1/1/2026) Step a.a should be now part of archinstall. Once we have a reproduceable install using archinstall step a.a needs to be removed. The issue appears to be with libvirt being pulled out of home manager which is the only thing that changed and broke my vm graphics issue (even though it is theoretically unrelated with the vm install). So we are rebaselining with these exact steps. Ideally we do not want libvirtd in virt.nix which it is during this rebaseline as it is the only install that worked.
-
-NOTE: (1/2/2026) After nearly 8 hours of debugging it looks as if I deselect OpenGL and 3d acceleration it allows a windows install. While skeptical, these settings are not suppose to affect the virtio driver interface to my GPU still allowing light Sketchup and Fusion 360. We will test this now and then try a full reimage removing step a.a.
-
-	N/A) sudo pacman -S qemu-full virt-manager virt-viewer \
-		dnsmasq iptables edk2-ovmf swtpm
+A) Base Install (MOVE THIS TO bootstrap.sh)
 	
-	a.a) sudo usermod -aG libvirt username	
-		a.b.a) logout / login
-		a.b.b) run: groups
-		a.b.c) verify libvirt is shown with wheel
-		
-	a.b) sudo systemctl enable --now libvirtd.service
+	a.a) sudo systemctl enable --now libvirtd.service
+	a.b) sudo virsh net-start default
+	a.c) sudo virsh net-autostart default
 
 ***
 D) download / copy *.iso's to target location
@@ -69,12 +58,14 @@ NOTE: I have found that the best way to address scaling issues on the monitor is
 
 NOTE: Ensure that you are connecting to the correct service so that QEMU can see the VM. (Need to clarity what the issue is here on the next install)
 ***
-* OTHER
+* TODO
 
-a) If you get an error that the default network cannot be found then:
+1) Add to bootstrap.sh
+	1.1) "setup virt in target()"
+	1.2) sudo usermod -aG libvirt username	
+	1.3) sudo systemctl enable --now libvirtd.service
+	1.4) sudo virsh net-start default
+	1.5) sudo virsh net-autostart default
 
-	a.a) sudo virsh net-start default
-	a.b) sudo virsh net-autostart default
-	a.c) sudo virsh net-list --all
-	
-***
+
+

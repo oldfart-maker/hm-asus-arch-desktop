@@ -248,7 +248,11 @@
       "centerWidgets": [
         "music",
         "clock",
-        "weather"
+        "weather",
+        {
+          "id": "idleInhibitor",
+          "enabled": true
+        }
       ],
       "rightWidgets": [
         "systemTray",
