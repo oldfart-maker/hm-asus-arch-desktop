@@ -306,40 +306,57 @@ setup_smb_in_target() {
 setup_virt_in_target() {
   echo "=== bootstrap.sh: setting up libvirt/qemu in target ==="
 
-  # ---- HARD-CODE TARGET USER ----
   local TARGET_USER="username"
 
-  # Packages: NAT networking + virt-manager UI
-  # (qemu-base is usually enough; use qemu-full if you prefer)
   arch-chroot "$TARGET_MNT" pacman --noconfirm -S --needed \
     qemu-base libvirt virt-manager dnsmasq iptables-nft bridge-utils
 
-  # Group membership for managing libvirt without sudo (still may need polkit rules depending on your setup)
-  arch-chroot "$TARGET_MNT" usermod -aG libvirt "$TARGET_USER" || true
+  # Sanity: user must exist in target
+  if ! arch-chroot "$TARGET_MNT" id "$TARGET_USER" >/dev/null 2>&1; then
+    echo "ERROR: target user '$TARGET_USER' does not exist in $TARGET_MNT yet."
+    echo "Fix: ensure archinstall creates this user, or create it before setup_virt_in_target."
+    return 1
+  fi
+
+  # Ensure required groups exist (safe if already present)
+  arch-chroot "$TARGET_MNT" getent group libvirt >/dev/null 2>&1 || \
+    arch-chroot "$TARGET_MNT" groupadd libvirt
+
+  # Add user to groups typically needed for virtualization workflows
+  arch-chroot "$TARGET_MNT" usermod -aG libvirt,kvm "$TARGET_USER"
+
+  echo "=== bootstrap.sh: target user groups (inside chroot) ==="
+  arch-chroot "$TARGET_MNT" id "$TARGET_USER"
 
   # Enable libvirt services (do NOT use --now in chroot)
-  arch-chroot "$TARGET_MNT" systemctl enable libvirtd.service
-  arch-chroot "$TARGET_MNT" systemctl enable virtlogd.service || true
+  # Sanity check unit file exists
+  if ! arch-chroot "$TARGET_MNT" test -f /usr/lib/systemd/system/libvirtd.service; then
+    echo "ERROR: libvirtd.service unit not found in target. Package install may have failed."
+    return 1
+  fi
 
-  # Ensure default NAT network autostarts on boot.
-  # This avoids needing `virsh net-start default` during bootstrap (daemon isn’t running yet).
+  arch-chroot "$TARGET_MNT" systemctl enable libvirtd.service
+
+  # virtlogd is commonly present; enable if it exists
+  if arch-chroot "$TARGET_MNT" test -f /usr/lib/systemd/system/virtlogd.service; then
+    arch-chroot "$TARGET_MNT" systemctl enable virtlogd.service
+  fi
+
+  # Ensure default NAT network autostarts on boot (file-based autostart)
   mkdir -p "$TARGET_MNT/etc/libvirt/qemu/networks/autostart"
 
-  # If the default network XML exists, link it into autostart.
-  # (On Arch, default.xml is commonly present after libvirt install; if not, you can define it later with virsh.)
   if [[ -f "$TARGET_MNT/etc/libvirt/qemu/networks/default.xml" ]]; then
     ln -sf ../default.xml "$TARGET_MNT/etc/libvirt/qemu/networks/autostart/default.xml"
     echo "Configured libvirt default network to autostart."
   else
     echo "NOTE: $TARGET_MNT/etc/libvirt/qemu/networks/default.xml not found."
-    echo "After first boot, run: sudo virsh net-define /etc/libvirt/qemu/networks/default.xml"
-    echo "and then: sudo virsh net-autostart default && sudo virsh net-start default"
+    echo "After first boot, run:"
+    echo "  sudo virsh net-define /etc/libvirt/qemu/networks/default.xml"
+    echo "  sudo virsh net-autostart default"
+    echo "  sudo virsh net-start default"
   fi
 
   echo "=== bootstrap.sh: libvirt setup complete ==="
-  echo "After first boot, you can verify with:"
-  echo "  systemctl status libvirtd"
-  echo "  virsh net-list --all"
 }
 
 post_install() {

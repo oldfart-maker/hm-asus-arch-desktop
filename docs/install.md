@@ -30,13 +30,12 @@ e) sudo pacman -S git
 ***
 * Step 3 - Boostrap archlinux
 
-NOTE: The disk partitioning may not be correct causing a full disk as it tries to install on the sdcard. The best way to do this is after performing step d, do:
+NOTE: Ensure the disk partitioning is correct. If it is not correct perform the step 1-4, otherwise go to step a.
 
-1) archinstall --config user___configuration.json --creds user___credentials.json
-2) update the disk partitioning / ext4
-3) save the *.json files to /
-4) mv /**.json ~/projects/hm-asus-arch-desktop/tools
-5) start step e
+1) cd ~/projects/hm-asus-arch-desktop/tools
+2) ./run-config.sh
+3) update the disk partitioning / ext4
+4) go to step e
 
 # a) mkdir -p ~/projects
 b) cd ~/projects
@@ -77,4 +76,8 @@ b) dankmaterialshell (walk through prompts)
 c) mkdir ~/config/DankMaterialShell
 d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 	~/.config/DankMaterialShell
-
+	
+***
+TODO
+1) Add: mesa-utils, vulkan-tools, pciutils to archinstall additional packages
+2) group add (libvirt) in bootstraph.sh did not work

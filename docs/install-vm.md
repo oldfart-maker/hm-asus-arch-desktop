@@ -1,14 +1,7 @@
 ***
 * INSTALL VM (QEMU/VIRT)
 
-***
-A) Base Install (MOVE THIS TO bootstrap.sh)
-	
-	a.a) sudo systemctl enable --now libvirtd.service
-	a.b) sudo virsh net-start default
-	a.c) sudo virsh net-autostart default
 
-***
 D) download / copy *.iso's to target location
 
 NOTE: There is a version of the .iso's on the external drive that can be used initially. 
@@ -66,6 +59,3 @@ NOTE: Ensure that you are connecting to the correct service so that QEMU can see
 	1.3) sudo systemctl enable --now libvirtd.service
 	1.4) sudo virsh net-start default
 	1.5) sudo virsh net-autostart default
-
-
-
