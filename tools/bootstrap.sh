@@ -309,7 +309,7 @@ setup_virt_in_target() {
   local TARGET_USER="username"
 
   arch-chroot "$TARGET_MNT" pacman --noconfirm -S --needed \
-    qemu-base libvirt virt-manager dnsmasq  bridge-utils
+    qemu- libvirt  dnsmasq  bridge-utils
 
   # Sanity: user must exist in target
   if ! arch-chroot "$TARGET_MNT" id "$TARGET_USER" >/dev/null 2>&1; then
