@@ -41,6 +41,7 @@
     ./modules/core/wezterm.nix
     ./modules/core/trim-screenshots.nix
 
+    ./modules/apps/virt.nixg
     ./modules/apps/mako.nix
     ./modules/apps/emacs.nix
     ./modules/apps/bitwarden.nix

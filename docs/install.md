@@ -60,14 +60,7 @@ g) ./target-setup.sh
 
 
 ***
-* Step 5 - Start virt
-
-a) sudo systemctl enable --now libvirtd.service
-b) sudo virsh net-start default
-c) sudo virsh net-autostart default
-
-***
-* Step 6 - Install dankmaterialshell (if this is the shell you wish to use)
+* Step 5 - Install dankmaterialshell (if this is the shell you wish to use)
 
 NOTE: The case must be correct: DankMaterialShell
 
@@ -79,5 +72,4 @@ d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 	
 ***
 TODO
-1) Add: mesa-utils, vulkan-tools, pciutils to archinstall additional packages
-2) group add (libvirt) in bootstraph.sh did not work
+1) Add to archinstall: mesa-utils, vulkan-tools, pciutils
