@@ -16,7 +16,7 @@ C) Change to external HD dir
 C) dump configs
 	c.a) sudo virsh dumpxml ANGEL-WIN11 > ANGEL-WIN11.xml
 	
-D) copy the disk image
+d) copy the disk image
 	d.a) sudo rsync -a --sparse \
 		/var/lib/libvirt/images/ANGEL-WIN11.qcow2 \.
 		
