@@ -103,7 +103,6 @@
         "edk2-ovmf",
         "ethtool",
         "git",
-        "iptables-nft",
         "iw",
         "libtpms",
         "libvirt",
