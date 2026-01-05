@@ -106,7 +106,6 @@
         "iw",
         "libtpms",
         "libvirt",
-        "mesa-utils",
         "networkmanager",
         "nss-mdns",
         "qemu-full",
@@ -115,9 +114,7 @@
         "samba",
         "swtpm",
         "usbutils",
-        "vulkan-tools",
-        "xwayland-satellite",
-        "pciutils"
+        "xwayland-satellite"
     ],
     "parallel_downloads": 0,
     "profile_config": {
