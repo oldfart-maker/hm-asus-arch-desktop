@@ -45,6 +45,7 @@
     ./modules/apps/mako.nix
     ./modules/apps/emacs.nix
     ./modules/apps/bitwarden.nix
+    ./modules/apps/chat-media.nix
     ./modules/apps/qutebrowser.nix
     ./modules/apps/libreoffice.nix
     ./modules/apps/dankmaterialshell.nix

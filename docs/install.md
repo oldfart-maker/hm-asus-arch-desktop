@@ -73,3 +73,4 @@ d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 ***
 TODO
 1) Add to archinstall: mesa-utils, vulkan-tools, pciutils
+2) Note (1/5/2026): the last run of bootstrap.sh did not mount the external drive.
