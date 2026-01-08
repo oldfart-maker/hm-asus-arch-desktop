@@ -421,7 +421,7 @@ post_install() {
   setup_ssh_in_target
   setup_smb_in_target
   setup_virt_in_target
-  setup_keyring_in_target
+#  setup_keyring_in_target
 }
 
 main() {
