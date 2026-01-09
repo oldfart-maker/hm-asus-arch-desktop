@@ -32,3 +32,20 @@
 
 ;; Enable Eglot automatically for certain modes
 (add-hook 'python-mode-hook #'eglot-ensure)
+
+(use-package magit
+    :config
+    (setq magit-push-always-verify nil)
+    (setq git-commit-summary-max-length 50)
+    :bind
+    ("M-g" . magit-status))
+
+  (use-package treemacs-magit
+    :after treemacs magit)
+
+  (use-package ghub
+    :demand t
+    :after magit)
+
+;; Enable Eglot automatically for certain modes
+(add-hook 'python-mode-hook #'eglot-ensure)
