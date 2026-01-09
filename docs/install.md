@@ -3,6 +3,7 @@ SYSTEM INSTALL
 * Step 0 - Tangle emacs/niri configs
 a) cd ~/projects/hm-asus-arch-desktop/home/scripts
 b) ./tangle-synch.sh
+	NOTE: running ./tangle-synch.sh will generate both the niri config.kdl and all of the emacs.el modules.
 
 ***
 * Step 1 - Create archlinux iso
