@@ -1,4 +1,4 @@
-// LAST BUILD / DEPLOY: 2026-01-08 16:58:47
+// LAST BUILD / DEPLOY: 2026-01-09 16:40:41
 // ## NOTES  ###########################################################  
 // This config file has been created by emacs org babel. This was done
 // mostly as a learning experiment and to address the gaps that .kdl
@@ -178,8 +178,8 @@ layout {
         focus-ring {
                 // off
                 width 2
-                active-color "#D3B1B5"
-                inactive-color "#191a24"
+                active-color "#5E81AC"
+                inactive-color "#1b1e25"
                 // active-gradient from="#80c8ff" to="#bbddff" angle=45
                 // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
         }
