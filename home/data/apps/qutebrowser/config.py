@@ -53,7 +53,6 @@ config.bind('<Ctrl+b>', 'fake-key <left>', 'insert')   # back
 config.bind('<Ctrl+f>', 'fake-key <right>', 'insert')  # forward
 config.bind('<Ctrl+p>', 'fake-key <up>', 'insert')     # previous line
 config.bind('<Ctrl+n>', 'fake-key <down>', 'insert')   # next line
-
 config.bind('<Ctrl+a>', 'fake-key <Home>', 'insert')   # beginning of line
 config.bind('<Ctrl+e>', 'fake-key <End>', 'insert')    # end of line
 config.bind('<Ctrl+d>', 'fake-key <Delete>', 'insert') # delete char

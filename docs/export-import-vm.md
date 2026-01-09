@@ -1,6 +1,8 @@
 * EXPORT / IMPORT VM
 
 ***
+NOTE: 1/8/2026 - This function has been  move to hm-asus-arch-destkop/tools/export-vm.sh. You will be prompted for the vm that you wish to export. 
+
 EXPORT
 
 A) check if vm is running
@@ -22,6 +24,8 @@ d) copy the disk image
 		
 ******
 IMPORT
+
+NOTE: 1/8/2026 - This function has been  move to hm-asus-arch-destkop/tools/restore-vm.sh. You will be prompted for the vm that you wish to install. If you hit enter at the prompt a list of backup vms will be listed to select from.
 
 A) Change to external HD dir
 	a.a) cd /mnt/backup/angel-win11-exports
