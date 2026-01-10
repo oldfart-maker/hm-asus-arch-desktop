@@ -72,6 +72,26 @@ d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 	~/.config/DankMaterialShell
 	
 ***
-TODO
-1) Add to archinstall: mesa-utils, vulkan-tools, pciutils
-2) Note (1/5/2026): the last run of bootstrap.sh did not mount the external drive.
+* Step 6 - Add ssh key to github.com
+
+1) mkdir -p ~/.ssh
+2) chmod 700 ~/.ssh
+3) generate key only if it doesn't already exist
+	3.1) ssh-keygen -t ed25519 -f ~/.ssh/id___ed25519 -C "you@yourdomain.com"
+	3.2) chmod 600 ~/.ssh/id___ed25519
+	3.3) chmod 644 ~/.ssh/id___ed25519.pub
+4) eval "$(ssh-agent -s)"
+	4.1) ssh-add ~/.ssh/id___ed25519
+5) ssh-keyscan -H github.com >> ~/.ssh/known___hosts
+	5.1) chmod 644 ~/.ssh/known___hosts
+5) print and copy this key:
+	5.1) cat ~/.ssh/id_ed25519.pub
+6) github.com -> SSH and GPG keys -> New SSH key
+	6.1) copy the full string
+7) Switch repo remote to ssh
+	7.1) cd /path/to/hm-asus-arch-desktop
+	7.2) git remote -v
+	7.3) git remote set-url origin 
+	7.4) git@github.com:oldfart-maker/hm-asus-arch-desktop.git
+	7.5) git remote -v
+8) git push
