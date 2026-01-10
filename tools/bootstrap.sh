@@ -213,6 +213,29 @@ setup_ssh_in_target() {
 
   # fix ownership (ISO runs as root)
   arch-chroot "$TARGET_MNT" chown -R "$TARGET_USER:$TARGET_USER" "/home/$TARGET_USER/.ssh"
+
+# Generate a GitHub-friendly SSH key on first install (idempotent)
+# This avoids PAT/password prompts for git operations.
+local ssh_key="/home/$TARGET_USER/.ssh/id_ed25519"
+local ssh_pub="${ssh_key}.pub"
+
+if ! arch-chroot "$TARGET_MNT" test -f "$ssh_key"; then
+  echo "Generating SSH key for $TARGET_USER inside target: $ssh_key"
+  arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
+    "ssh-keygen -t ed25519 -a 100 -N '' -f '$ssh_key' -C '${TARGET_USER}@${HOSTNAME:-arch}'"
+else
+  echo "SSH key already exists for $TARGET_USER: $ssh_key"
+fi
+
+# Pre-seed known_hosts for github.com to avoid first-connect prompt (safe to re-run)
+arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
+  "mkdir -p ~/.ssh && touch ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts"
+arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
+  "ssh-keyscan -H github.com 2>/dev/null >> ~/.ssh/known_hosts || true"
+
+echo "=== Add this public key to GitHub (Settings → SSH and GPG keys) ==="
+arch-chroot "$TARGET_MNT" cat "$ssh_pub" || true
+echo "=================================================================="
 }
 
 setup_external_mounts_in_target() {
@@ -359,60 +382,6 @@ setup_virt_in_target() {
   echo "=== bootstrap.sh: libvirt setup complete ==="
 }
 
-setup_keyring_in_target() {
-  echo "=== bootstrap.sh: setting up gnome-keyring (Electron safe storage) in target ==="
-
-  # Packages provide a Secret Service backend (org.freedesktop.secrets)
-  arch-chroot "$TARGET_MNT" pacman --noconfirm -S --needed gnome-keyring libsecret
-
-  pam_insert_after_last_type() {
-    local file="$1" type="$2" line="$3"
-
-    [[ -f "$file" ]] || { echo "WARN: PAM file not found: $file"; return 0; }
-    grep -Fxq "$line" "$file" && return 0
-
-    # Insert after the last line that begins with the requested PAM type (auth/session/password)
-    if grep -qE "^${type}[[:space:]]" "$file"; then
-      awk -v t="$type" -v l="$line" '
-        { a[NR] = $0 }
-        END {
-          last = 0
-          for (i = 1; i <= NR; i++) if (a[i] ~ ("^" t "[ \t]")) last = i
-          for (i = 1; i <= NR; i++) {
-            print a[i]
-            if (i == last) print l
-          }
-          if (last == 0) print l
-        }
-      ' "$file" >"$file.tmp" && mv "$file.tmp" "$file"
-    else
-      # No lines of this type exist; append (safe for optional modules)
-      echo "$line" >>"$file"
-    fi
-  }
-
-  # For GDM sessions, gdm-password is the PAM file that matters.
-  # For TTY logins, login/system-local-login apply.
-  # passwd keeps the keyring password in sync when changing login password.
-  local pam_gdm="$TARGET_MNT/etc/pam.d/gdm-password"
-  local pam_login="$TARGET_MNT/etc/pam.d/login"
-  local pam_syslocal="$TARGET_MNT/etc/pam.d/system-local-login"
-  local pam_passwd="$TARGET_MNT/etc/pam.d/passwd"
-
-  pam_insert_after_last_type "$pam_gdm"     auth     "auth       optional  pam_gnome_keyring.so"
-  pam_insert_after_last_type "$pam_gdm"     session  "session    optional  pam_gnome_keyring.so auto_start"
-
-  pam_insert_after_last_type "$pam_login"   auth     "auth       optional  pam_gnome_keyring.so"
-  pam_insert_after_last_type "$pam_login"   session  "session    optional  pam_gnome_keyring.so auto_start"
-
-  pam_insert_after_last_type "$pam_syslocal" auth    "auth       optional  pam_gnome_keyring.so"
-  pam_insert_after_last_type "$pam_syslocal" session "session    optional  pam_gnome_keyring.so auto_start"
-
-  pam_insert_after_last_type "$pam_passwd"  password "password   optional  pam_gnome_keyring.so"
-
-  echo "=== bootstrap.sh: keyring PAM wiring complete ==="
-}
-
 post_install() {
   echo "=== bootstrap.sh: running post-install configuration ==="
   ensure_target_mounted
@@ -421,7 +390,6 @@ post_install() {
   setup_ssh_in_target
   setup_smb_in_target
   setup_virt_in_target
-#  setup_keyring_in_target
 }
 
 main() {
