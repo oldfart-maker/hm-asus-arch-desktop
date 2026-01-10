@@ -4,6 +4,7 @@ GIT REBASE (magit)
 	a) M-x magit-status
 	b) Fetch from origin
 	c) press f then p
+	d) press r then p
 
 * Step 0 - Tangle emacs/niri configs
 a) cd ~/projects/hm-asus-arch-desktop/home/scripts
