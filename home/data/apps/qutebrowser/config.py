@@ -22,6 +22,8 @@ c.content.prefers_reduced_motion = True
 c.statusbar.widgets = ["scroll", "progress", "keypress", "search_match", "url", "progress", "clock"]
 c.statusbar.show = "always"
 c.statusbar.position = "bottom"
+c.set("fonts.default_size", "10pt")
+c.set("fonts.web.size.default", 12)
 
 # Adblock
 from pathlib import Path
