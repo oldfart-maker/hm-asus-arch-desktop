@@ -2,8 +2,8 @@ SYSTEM INSTALL
 
 GIT REBASE (magit)
 	a) M-x magit-status
-	b) Fetch from origin
-	c) press f then p
+	b) press f
+	c) press p - Fetch from origin
 	d) press r then p
 
 * Step 0 - Tangle emacs/niri configs
