@@ -2,7 +2,6 @@ config.load_autoconfig(False)
 
 c.auto_save.session = True
 c.auto_save.interval = 15000
-c.fonts.web.family.fantasy = 'JetBrains Mono'
 c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 c.content.geolocation = False
 c.completion.height = "20%"
@@ -137,4 +136,7 @@ config.set("fonts.tabs.unselected", "12pt JetBrains Mono")
 config.set("fonts.prompts", "12pt JetBrains Mono")
 config.set("fonts.keyhint", "12pt JetBrains Mono")
 config.set("fonts.hints", "12pt JetBrains Mono")
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
