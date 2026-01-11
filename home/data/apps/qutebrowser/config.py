@@ -125,7 +125,6 @@ config.set("fonts.default_size", "12pt")
 config.set("fonts.web.size.default", 12)
 
 # UI fonts (command line + completion) ---
-config.set("fonts.commands", "12pt JetBrains Mono")
 config.set("fonts.completion.entry", "12pt JetBrains Mono")
 config.set("fonts.completion.category", "12pt JetBrains Mono")
 
@@ -136,7 +135,3 @@ config.set("fonts.tabs.unselected", "12pt JetBrains Mono")
 config.set("fonts.prompts", "12pt JetBrains Mono")
 config.set("fonts.keyhint", "12pt JetBrains Mono")
 config.set("fonts.hints", "12pt JetBrains Mono")
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
