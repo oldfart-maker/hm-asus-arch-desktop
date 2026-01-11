@@ -28,7 +28,6 @@ in {
     extraConfig = builtins.readFile cfgPath;
   };
 
-  home.file.".config/qutebrowser/config.py".source    = cfgPath;
   home.file.".config/qutebrowser/gruvbox.py".source    = themePath;
   home.file.".config/qutebrowser/overrides.txt".source    = overridesPath;
 
