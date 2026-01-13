@@ -80,7 +80,7 @@ d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 ***
 * Step 6 - github configuration
 
-TODO: remove git.nix and run steps a - e.
+TODO: If you decide to remove git.nix from home manager then run steps a-e, otherwise skitp to step 1.
 
 a) git config --global user.name "oldfart-maker"
 b) git config --global user.email "mkburns61@yahoo.com"
