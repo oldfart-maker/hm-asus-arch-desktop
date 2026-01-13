@@ -78,7 +78,16 @@ d) cp ~/projects/hm-asus-arch-desktop/home/data/apps/dankmaterialshell/* \
 	~/.config/DankMaterialShell
 	
 ***
-* Step 6 - Add ssh key to github.com
+* Step 6 - github configuration
+
+TODO: remove git.nix and run steps a - e.
+
+a) git config --global user.name "oldfart-maker"
+b) git config --global user.email "mkburns61@yahoo.com"
+c) git config --global init.defaultBranch main
+d) git config --global pull.rebase true
+e) git config --global push.autoSetupRemote true
+
 
 1) mkdir -p ~/.ssh
 2) chmod 700 ~/.ssh
