@@ -96,7 +96,6 @@ e) git config --global push.autoSetupRemote true
 3) Switch repo remote to ssh
 	3.1) cd /path/to/hm-asus-arch-desktop
 	3.2) git remote -v
-	3.3) git remote set-url origin 
-	3.4) git@github.com:oldfart-maker/hm-asus-arch-desktop.git
+	3.3) git remote set-url origin git@github.com:oldfart-maker/hm-asus-arch-desktop.git
 	3.5) git remote -v
 4) git push
