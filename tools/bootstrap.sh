@@ -216,26 +216,26 @@ setup_ssh_in_target() {
 
 # Generate a GitHub-friendly SSH key on first install (idempotent)
 # This avoids PAT/password prompts for git operations.
-local ssh_key="/home/$TARGET_USER/.ssh/id_ed25519"
-local ssh_pub="${ssh_key}.pub"
+  local ssh_key="/home/$TARGET_USER/.ssh/id_ed25519"
+  local ssh_pub="${ssh_key}.pub"
 
-if ! arch-chroot "$TARGET_MNT" test -f "$ssh_key"; then
-  echo "Generating SSH key for $TARGET_USER inside target: $ssh_key"
-  arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
-    "ssh-keygen -t ed25519 -a 100 -N '' -f '$ssh_key' -C '${TARGET_USER}@${HOSTNAME:-arch}'"
-else
-  echo "SSH key already exists for $TARGET_USER: $ssh_key"
-fi
+  if ! arch-chroot "$TARGET_MNT" test -f "$ssh_key"; then
+      echo "Generating SSH key for $TARGET_USER inside target: $ssh_key"
+      arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
+      "ssh-keygen -t ed25519 -a 100 -N '' -f '$ssh_key' -C '${TARGET_USER}@${HOSTNAME:-arch}'"
+  else
+      echo "SSH key already exists for $TARGET_USER: $ssh_key"
+  fi
 
 # Pre-seed known_hosts for github.com to avoid first-connect prompt (safe to re-run)
-arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
-  "mkdir -p ~/.ssh && touch ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts"
-arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
-  "ssh-keyscan -H github.com 2>/dev/null >> ~/.ssh/known_hosts || true"
+  arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
+    "mkdir -p ~/.ssh && touch ~/.ssh/known_hosts && chmod 600 ~/.ssh/known_hosts"
+  arch-chroot "$TARGET_MNT" su - "$TARGET_USER" -c \
+    "ssh-keyscan -H github.com 2>/dev/null >> ~/.ssh/known_hosts || true"
 
-echo "=== Add this public key to GitHub (Settings → SSH and GPG keys) ==="
-arch-chroot "$TARGET_MNT" cat "$ssh_pub" || true
-echo "=================================================================="
+  echo "=== Add this public key to GitHub (Settings → SSH and GPG keys) ==="
+  arch-chroot "$TARGET_MNT" cat "$ssh_pub" || true
+  echo "=================================================================="
 }
 
 setup_external_mounts_in_target() {
