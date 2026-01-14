@@ -90,9 +90,9 @@ e) git config --global push.autoSetupRemote true
 
 
 1) print and copy this key:
-	5.1) cat ~/.ssh/id_ed25519.pub
+	1.1) cat ~/.ssh/id_ed25519.pub
 2) github.com -> SSH and GPG keys -> New SSH key
-	6.1) copy the full string
+	2.1) copy the full string
 3) Switch repo remote to ssh
 	3.1) cd /path/to/hm-asus-arch-desktop
 	3.2) git remote -v
