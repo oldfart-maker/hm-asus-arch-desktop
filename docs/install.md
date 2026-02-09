@@ -1,5 +1,7 @@
 SYSTEM INSTALL
 
+NOTE: If you are prompted by git when making a commit the passkey is: sysclone
+
 GIT REBASE (magit)
 	a) M-x magit-status
 	b) press f
